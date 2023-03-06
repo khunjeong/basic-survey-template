@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import '@styles/global.css';
-import { Button } from '@components';
+import { Button, FlexContainer } from './components';
 import { Reset } from 'styled-reset';
 
 const App: FC = () => (
@@ -14,7 +14,10 @@ const App: FC = () => (
           colorPrimary: '#00b96b',
         },
       }}>
-      <Button>Button</Button>
+      <FlexContainer style={{ gap: 10 }}>
+        <Button>Button</Button>
+        <Button>Button2</Button>
+      </FlexContainer>
     </ConfigProvider>
   </div>
 );

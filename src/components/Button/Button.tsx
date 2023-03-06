@@ -1,14 +1,7 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
-
+import { ReactElement } from 'react';
 import * as S from './Button.styled';
+import { TBaseButtonProps } from './Button.type';
 
-interface IButtonProps
-  extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
-
-const Button = (props: IButtonProps) => {
-  const { children } = props;
-
-  return <S.Button type='primary'>{children}</S.Button>;
-};
+const Button = <T extends TBaseButtonProps>(props: T): ReactElement<T> => <S.Button {...props} />;
 
 export default Button;
