@@ -9,26 +9,30 @@ const Editor = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
-  const [surveyContent, setSurveyContent] = useState<TSurvey[]>([]);
+  const [surveyContents, setSurveyContents] = useState<TSurvey[]>([]);
 
   const addSurveyContent = useCallback(() => {
-    setSurveyContent([
-      ...surveyContent,
+    setSurveyContents([
+      ...surveyContents,
       {
         id: uuid(),
         type: ESurveyTypes.BLANK,
         required: false,
       },
     ]);
-  }, [surveyContent]);
+  }, [surveyContents]);
 
   const onUpdateSurvey = (survey: TSurvey) => {
-    setSurveyContent(surveyContent.map(content => (content.id === survey.id ? survey : content)));
+    setSurveyContents(surveyContents.map(content => (content.id === survey.id ? survey : content)));
+  };
+
+  const onRemoveSurvey = (id: string) => {
+    setSurveyContents(surveyContents.filter(content => content.id !== id));
   };
 
   useEffect(() => {
-    console.log({ surveyContent });
-  }, [surveyContent]);
+    console.log({ surveyContents });
+  }, [surveyContents]);
 
   return (
     <Article>
@@ -45,8 +49,13 @@ const Editor = () => {
         />
       </Section>
       <Section>
-        {surveyContent.map((content, index) => (
-          <Surveys key={content.id} survey={content} onUpdateSurvey={onUpdateSurvey} />
+        {surveyContents.map(content => (
+          <Surveys
+            key={content.id}
+            survey={content}
+            onUpdateSurvey={onUpdateSurvey}
+            onRemoveSurvey={onRemoveSurvey}
+          />
         ))}
       </Section>
       <Section>

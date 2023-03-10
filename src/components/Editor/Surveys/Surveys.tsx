@@ -7,7 +7,7 @@ import * as S from './Surveys.styled';
 import { ESurveyTypes, IDropdownOption, TypedSurvey } from '../../../types';
 import { ISurveyDisplay } from './Surveys.type';
 
-const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey }: T) => {
+const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSurvey }: T) => {
   const surveyType = survey.type !== ESurveyTypes.BLANK && survey.type;
 
   const [title, setTitle] = useState(survey.title);
@@ -88,7 +88,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey }: T) => {
         </Section>
       )}
       <Section style={{ marginTop: 10 }}>
-        <Button>제거</Button>
+        <Button onClick={() => onRemoveSurvey(survey.id)}>제거</Button>
       </Section>
     </S.SurveyContainer>
   );
