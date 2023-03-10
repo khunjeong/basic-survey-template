@@ -1,16 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import produce from 'immer';
 import { Article, Section, Button, Inputs } from '../../components';
 import Surveys from './Surveys';
-import { ESurveyTypes, ISurvey } from '../../types';
+import { ESurveyTypes, TSurvey } from '../../types';
 import * as S from './Editor.styled';
 
 const Editor = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
-  const [surveyContent, setSurveyContent] = useState<ISurvey[]>([]);
+  const [surveyContent, setSurveyContent] = useState<TSurvey[]>([]);
 
   const addSurveyContent = useCallback(() => {
     setSurveyContent([
@@ -23,19 +22,8 @@ const Editor = () => {
     ]);
   }, [surveyContent]);
 
-  const onUpdateSurvey = (survey: ISurvey) => {
-    setSurveyContent(
-      produce(surveyContent, draft => {
-        const surveyItem = draft.find(item => item.id === survey.id);
-        if (surveyItem) {
-          surveyItem.id = survey.id;
-          surveyItem.type = survey.type;
-          surveyItem.title = survey.title;
-          surveyItem.description = survey.description;
-          surveyItem.required = survey.required;
-        }
-      }),
-    );
+  const onUpdateSurvey = (survey: TSurvey) => {
+    setSurveyContent(surveyContent.map(content => (content.id === survey.id ? survey : content)));
   };
 
   useEffect(() => {

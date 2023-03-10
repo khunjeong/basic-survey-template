@@ -1,6 +1,6 @@
-import { ISurvey } from '../../../types';
+import { TSurvey } from '../../../types';
 
 export interface ISurveyDisplay {
-  survey: ISurvey;
-  onUpdateSurvey: (survey: ISurvey) => void;
+  survey: TSurvey;
+  onUpdateSurvey: (survey: TSurvey) => void;
 }
