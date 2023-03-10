@@ -2,9 +2,14 @@ import { ReactElement, useRef, useState } from 'react';
 import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import * as S from './Dropdown.styled';
+import { IDropdownOption } from '../../types';
 import { IDropdownProps } from './Dropdown.type';
 
-const Dropdown = ({ items, selectedIndex, onChange }: IDropdownProps) => {
+const Dropdown = <T extends IDropdownProps<IDropdownOption>>({
+  items,
+  selectedIndex,
+  onChange,
+}: T): ReactElement<T> => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isListVisible, setIsListVisible] = useState(false);
   const [selectIndex, setSelectIndex] = useState<number>(selectedIndex || 0);
@@ -14,14 +19,14 @@ const Dropdown = ({ items, selectedIndex, onChange }: IDropdownProps) => {
   return (
     <S.DropdownWrap ref={dropdownRef} onClick={() => setIsListVisible(true)}>
       <div className='select-current-value'>
-        <p>{selectedItem ?? '목록에서 선택해주세요.'}</p>
+        <p>{selectedItem.label ?? '목록에서 선택해주세요'}</p>
         <div className='select-icon'>
           <CaretDownOutlined />
         </div>
       </div>
       {isListVisible && (
         <div className='select-options-container'>
-          {items.map((item: any, index: number) => (
+          {items.map((item, index: number) => (
             <div
               className={classnames({
                 'select-options': true,
@@ -34,7 +39,7 @@ const Dropdown = ({ items, selectedIndex, onChange }: IDropdownProps) => {
                 onChange && onChange(item, index);
                 setIsListVisible(false);
               }}>
-              {item}
+              {item.label}
             </div>
           ))}
         </div>

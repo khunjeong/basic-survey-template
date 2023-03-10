@@ -1,5 +1,5 @@
-export interface IDropdownProps {
-  items: any;
+export interface IDropdownProps<T> {
+  items: T[];
   selectedIndex?: number;
-  onChange?: (value: any, index: number) => void;
+  onChange?: (value: T, index: number) => void;
 }

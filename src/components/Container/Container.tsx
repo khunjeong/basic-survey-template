@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import * as S from './Container.styled';
 import { TBaseContainerProps, IFlexDivProps } from './Container.type';
 
-export const FlexContainer = <T extends IFlexDivProps>(props: T): ReactElement<T> => (
+export const FlexDiv = <T extends IFlexDivProps>(props: T): ReactElement<T> => (
   <S.FlexDiv {...props} />
 );
 
