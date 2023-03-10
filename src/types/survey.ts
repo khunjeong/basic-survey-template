@@ -40,3 +40,9 @@ export interface ISurveyMultiSelect extends ISurvey {
   question: IDropdownOption[];
   answer: string[];
 }
+
+export interface ISurveyResult {
+  title: string;
+  description?: string;
+  content: TSurvey[];
+}

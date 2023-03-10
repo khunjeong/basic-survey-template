@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Article, Section, Button, Inputs } from '../../components';
 import Surveys from './Surveys';
 import { ESurveyTypes, TSurvey } from '../../types';
 import * as S from './Editor.styled';
+import { IEditorProps } from './Editor.type';
 
-const Editor = () => {
+const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
@@ -29,10 +30,6 @@ const Editor = () => {
   const onRemoveSurvey = (id: string) => {
     setSurveyContents(surveyContents.filter(content => content.id !== id));
   };
-
-  useEffect(() => {
-    console.log({ surveyContents });
-  }, [surveyContents]);
 
   return (
     <Article>
@@ -60,6 +57,18 @@ const Editor = () => {
       </Section>
       <Section>
         <Button onClick={addSurveyContent}>구성추가</Button>
+      </Section>
+      <Section>
+        <Button
+          onClick={() =>
+            onSubmit({
+              title,
+              description,
+              content: surveyContents.filter(({ type }) => type !== ESurveyTypes.BLANK),
+            })
+          }>
+          전송하기
+        </Button>
       </Section>
     </Article>
   );

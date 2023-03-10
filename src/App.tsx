@@ -15,7 +15,7 @@ const App: FC = () => (
         },
       }}>
       <Article style={{ width: '50%' }}>
-        <Editor />
+        <Editor onSubmit={result => console.log({ result })} />
       </Article>
       {/* <FlexContainer style={{ gap: 10 }}>
         <Button>Button</Button>
