@@ -17,4 +17,5 @@ export const Article = styled.article`
 
 export const Section = styled.section`
   width: 100%;
+  margin: 8px 0px;
 `;
