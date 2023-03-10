@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import '@styles/global.css';
-import { Button, FlexContainer } from './components';
+import { Article, Button, Dropdown, Editor, FlexDiv, Inputs } from './components';
 import { Reset } from 'styled-reset';
 
 const App: FC = () => (
@@ -14,10 +14,21 @@ const App: FC = () => (
           colorPrimary: '#00b96b',
         },
       }}>
-      <FlexContainer style={{ gap: 10 }}>
+      <Article style={{ width: '50%' }}>
+        <Editor />
+      </Article>
+      {/* <FlexContainer style={{ gap: 10 }}>
         <Button>Button</Button>
         <Button>Button2</Button>
       </FlexContainer>
+      <Dropdown
+        items={['객관식', '서술형']}
+        selectedIndex={0}
+        onChange={(value: any) => {
+          console.log({ value });
+        }}
+      />
+      <Inputs /> */}
     </ConfigProvider>
   </div>
 );
