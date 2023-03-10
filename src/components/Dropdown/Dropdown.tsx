@@ -1,6 +1,7 @@
 import { ReactElement, useRef, useState } from 'react';
 import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
+import useClickOutside from '../../hooks/useClickOutside';
 import * as S from './Dropdown.styled';
 import { IDropdownOption } from '../../types';
 import { IDropdownProps } from './Dropdown.type';
@@ -15,6 +16,8 @@ const Dropdown = <T extends IDropdownProps<IDropdownOption>>({
   const [selectIndex, setSelectIndex] = useState<number>(selectedIndex || 0);
 
   const selectedItem = items[selectIndex];
+
+  useClickOutside(dropdownRef, () => setIsListVisible(false));
 
   return (
     <S.DropdownWrap ref={dropdownRef} onClick={() => setIsListVisible(true)}>

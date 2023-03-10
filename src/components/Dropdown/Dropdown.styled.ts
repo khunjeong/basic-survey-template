@@ -35,11 +35,11 @@ export const DropdownWrap = styled.div`
     position: absolute;
     width: 100%;
     max-height: 300px;
-    top: 38px;
+    top: 0px;
     left: 0px;
     background-color: #fff;
     border-radius: inherit;
-    overflow: scroll;
+    overflow: auto;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
     z-index: 9999;
     .select-options {
