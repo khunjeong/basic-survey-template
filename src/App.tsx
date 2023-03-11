@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import '@styles/global.css';
-import { Article, Editor, FlexDiv, Inputs, Viewer } from './components';
+import { Article, Editor, FlexDiv, Viewer } from './components';
 import { ISurveyResult } from './types';
 import { Reset } from 'styled-reset';
 
@@ -25,7 +25,7 @@ const App: FC = () => {
           </Article>
           {result && (
             <Article style={{ width: '50%' }}>
-              <Viewer survey={result} />
+              <Viewer survey={result} onSubmit={result => console.log({ result })} />
             </Article>
           )}
         </FlexDiv>

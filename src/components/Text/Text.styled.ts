@@ -16,7 +16,7 @@ export const Title = styled.h2<ITextProps>`
 `;
 
 export const Description = styled.p<ITextProps>`
-  font-size: ${props => props.size || '0.85em'};
+  font-size: ${props => props.size || '1em'};
   font-weight: ${props => props.weight || 700};
   color: ${props => props.color || colors.GRAY_ORIGIN_1};
   ${props =>

@@ -1,15 +1,14 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import classnames from 'classnames';
-import { FlexDiv, Text } from '../../../../components';
+import { Text } from '../../../../components';
 import * as S from './OptionSelector.styled';
 import { IOptionSelectorProps } from './OptionSelector.type';
 
 const OptionSelector = <T extends IOptionSelectorProps>({
   value,
   questions,
+  onChange,
 }: T): ReactElement<T> => {
-  const [checkedQuestion, setCheckedQuestion] = useState<string | null>(value);
-
   return (
     <S.OptionSelectorContainer>
       {questions.map(question => {
@@ -17,9 +16,9 @@ const OptionSelector = <T extends IOptionSelectorProps>({
           <S.OptionSelectItem
             key={question.key}
             className={classnames({
-              selected: checkedQuestion === question.key,
+              selected: value === question.key,
             })}
-            onClick={() => setCheckedQuestion(question.key)}>
+            onClick={() => onChange(question.key)}>
             <Text>{question.value}</Text>
           </S.OptionSelectItem>
         );
