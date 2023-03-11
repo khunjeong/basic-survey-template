@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { FlexDiv, Title, Description } from '../../../components';
-import OptionSelector from './OptionSelector';
+import { OptionSelector, OptionMultiSelector } from './OptionSelector';
 import { ESurveyTypes } from '../../../types';
 import { ISurveyViewersProps } from './SurveyViewers.type';
 import * as S from './SurveyViewers.styled';
@@ -21,6 +21,23 @@ const SurveyViewers = <T extends ISurveyViewersProps>({
               value={survey.answer}
               questions={survey.question}
               onChange={value => onUpdateSurvey({ ...survey, answer: value })}
+            />
+          </>
+        )}
+        {survey.type === ESurveyTypes.MULTI_SELECT && (
+          <>
+            <Description size={12}>1개 선택 가능</Description>
+            <OptionMultiSelector
+              value={survey.answer}
+              questions={survey.question}
+              onChange={value =>
+                onUpdateSurvey({
+                  ...survey,
+                  answer: survey.answer.includes(value)
+                    ? survey.answer.filter(key => key !== value)
+                    : [...survey.answer, value],
+                })
+              }
             />
           </>
         )}

@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 import classnames from 'classnames';
 import { Text } from '../../../../components';
 import * as S from './OptionSelector.styled';
-import { IOptionSelectorProps } from './OptionSelector.type';
+import { IOptionSelectorProps, IOptionMultiSelectorProps } from './OptionSelector.type';
 
-const OptionSelector = <T extends IOptionSelectorProps>({
+export const OptionSelector = <T extends IOptionSelectorProps>({
   value,
   questions,
   onChange,
@@ -27,4 +27,25 @@ const OptionSelector = <T extends IOptionSelectorProps>({
   );
 };
 
-export default OptionSelector;
+export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
+  value,
+  questions,
+  onChange,
+}: T): ReactElement<T> => {
+  return (
+    <S.OptionSelectorContainer>
+      {questions.map(question => {
+        return (
+          <S.OptionSelectItem
+            key={question.key}
+            className={classnames({
+              selected: value.includes(question.key),
+            })}
+            onClick={() => onChange(question.key)}>
+            <Text>{question.value}</Text>
+          </S.OptionSelectItem>
+        );
+      })}
+    </S.OptionSelectorContainer>
+  );
+};
