@@ -64,12 +64,18 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
           <Inputs
             placeholder='질문을 입력하세요'
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={e => {
+              onUpdateSurvey({ ...survey, title: e.target.value });
+              setTitle(e.target.value);
+            }}
           />
           <Inputs
             placeholder='설명을 입력하세요'
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={e => {
+              onUpdateSurvey({ ...survey, description: e.target.value });
+              setDescription(e.target.value);
+            }}
           />
           {(surveyType === ESurveyTypes.SINGLE_SELECT ||
             surveyType === ESurveyTypes.MULTI_SELECT) && (
