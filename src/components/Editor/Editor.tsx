@@ -1,14 +1,23 @@
 import { ReactElement, useCallback, useState } from 'react';
+import { DatePicker } from 'antd';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { Article, Section, Button, Inputs } from '../../components';
 import Surveys from './Surveys';
-import { ESurveyTypes, TSurvey } from '../../types';
+import { ESurveyTypes, TDate, TSurvey } from '../../types';
 import * as S from './Editor.styled';
 import { IEditorProps } from './Editor.type';
+
+const { RangePicker } = DatePicker;
+
+const dateFormat = 'YYYY-MM-DD';
+const nowDate = dayjs();
 
 const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [startDate, setStartDate] = useState<TDate>(nowDate.format(dateFormat));
+  const [endDate, setEndDate] = useState<TDate>(nowDate.add(1, 'd').format(dateFormat));
 
   const [surveyContents, setSurveyContents] = useState<TSurvey[]>([]);
 
@@ -33,6 +42,18 @@ const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
 
   return (
     <Article>
+      <Section>
+        <RangePicker
+          defaultValue={[dayjs(startDate, dateFormat), dayjs(endDate, dateFormat)]}
+          format={dateFormat}
+          onChange={rangeValue => {
+            if (rangeValue) {
+              setStartDate(dayjs(rangeValue?.[0]).format(dateFormat));
+              setEndDate(dayjs(rangeValue?.[1]).format(dateFormat));
+            }
+          }}
+        />
+      </Section>
       <Section>
         <Inputs
           placeholder='설문 제목을 입력하세요'
@@ -65,6 +86,8 @@ const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
               title,
               description,
               content: surveyContents.filter(({ type }) => type !== ESurveyTypes.BLANK),
+              startDate,
+              endDate,
             })
           }>
           전송하기

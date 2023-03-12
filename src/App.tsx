@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
@@ -10,6 +10,9 @@ import { Reset } from 'styled-reset';
 const App: FC = () => {
   const [result, setResult] = useState<ISurveyResult>();
 
+  useEffect(() => {
+    console.log({ result });
+  }, [result]);
   return (
     <div className='App'>
       <Reset />

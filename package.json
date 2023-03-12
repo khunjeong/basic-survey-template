@@ -1,6 +1,6 @@
 {
-  "name": "cra-ts-antd",
-  "version": "0.1.0",
+  "name": "basic-survey-template",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.0.0",
@@ -12,6 +12,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "antd": "^5.2.3",
+    "dayjs": "^1.11.7",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "lodash": "^4.17.21",

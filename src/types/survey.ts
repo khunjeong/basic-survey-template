@@ -1,3 +1,5 @@
+import { TDate } from './global';
+
 export enum ESurveyTypes {
   BLANK = 'blank',
   // SHORT_TEXT = 'short_text',
@@ -45,4 +47,6 @@ export interface ISurveyResult {
   title: string;
   description?: string;
   content: TSurvey[];
+  startDate: TDate;
+  endDate: TDate;
 }
