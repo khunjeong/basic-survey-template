@@ -1,7 +1,15 @@
 {
-  "name": "basic-survey-template",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@khunjeong/basic-survey-template",
+  "version": "0.0.3",
+  "author": {
+    "name": "khunjeong",
+    "email": "woghdkgj4456@gmail.com"
+  },
+  "private": false,
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": "./browser/specific/main.js",
   "dependencies": {
     "@craco/craco": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -31,7 +39,10 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:test": "rm -rf ./dist & tsc --outDir ./dist -d",
+    "build:tsc": "rm -rf ./dist & tsc",
+    "publish:npm": "rm -rf dist && mkdir dist && tsc"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -58,6 +69,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/preset-react": "^7.18.6",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
     "craco-alias": "^3.0.1",
