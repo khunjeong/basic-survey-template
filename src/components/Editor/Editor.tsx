@@ -5,7 +5,6 @@ import { v4 as uuid } from 'uuid';
 import { Article, Section, Button, Inputs } from '../../components';
 import Surveys from './Surveys';
 import { ESurveyTypes, TDate, TSurvey } from '../../types';
-import * as S from './Editor.styled';
 import { IEditorProps } from './Editor.type';
 
 const { RangePicker } = DatePicker;

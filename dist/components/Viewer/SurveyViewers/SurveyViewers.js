@@ -1,105 +1,114 @@
-import {
-  jsx as _jsx,
-  Fragment as _Fragment,
-  jsxs as _jsxs,
-} from 'react/jsx-runtime';
-import { FlexDiv, Title, Description } from '../../../components';
-import { OptionSelector, OptionMultiSelector } from './OptionSelector';
-import { ESurveyTypes } from '../../../types';
-import * as S from './SurveyViewers.styled';
-var __assign =
-  (this && this.__assign) ||
-  function () {
-    __assign =
-      Object.assign ||
-      function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (let p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+let __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? function (o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        let desc = Object.getOwnPropertyDescriptor(m, k);
+        if (
+          !desc ||
+          ('get' in desc ? !m.__esModule : desc.writable || desc.configurable)
+        ) {
+          desc = {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          };
         }
-        return t;
-      };
-    return __assign.apply(this, arguments);
-  };
-let __spreadArray =
-  (this && this.__spreadArray) ||
-  function (to, from, pack) {
-    if (pack || arguments.length === 2)
-      for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-          ar[i] = from[i];
-        }
+        Object.defineProperty(o, k2, desc);
       }
-    return to.concat(ar || Array.prototype.slice.call(from));
+    : function (o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        o[k2] = m[k];
+      });
+let __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? function (o, v) {
+        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+      }
+    : function (o, v) {
+        o.default = v;
+      });
+let __importStar =
+  (this && this.__importStar) ||
+  function (mod) {
+    if (mod && mod.__esModule) return mod;
+    let result = {};
+    if (mod != null)
+      for (let k in mod)
+        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k))
+          __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
   };
-let SurveyViewers = function (_a) {
-  let survey = _a.survey,
-    onUpdateSurvey = _a.onUpdateSurvey;
-  return _jsx(S.SurveyViewerContainer, {
-    children: _jsxs(
-      FlexDiv,
-      __assign(
+Object.defineProperty(exports, '__esModule', { value: true });
+const jsx_runtime_1 = require('react/jsx-runtime');
+const components_1 = require('../../../components');
+const OptionSelector_1 = require('./OptionSelector');
+const types_1 = require('../../../types');
+const S = __importStar(require('./SurveyViewers.styled'));
+const SurveyViewers = ({ survey, onUpdateSurvey }) => {
+  return (0, jsx_runtime_1.jsx)(S.SurveyViewerContainer, {
+    children: (0, jsx_runtime_1.jsxs)(
+      components_1.FlexDiv,
+      Object.assign(
         { flexDirection: 'column', alignItems: 'flex-start' },
         {
           children: [
             survey.title &&
-              _jsx(Title, __assign({ size: 18 }, { children: survey.title })),
-            survey.description &&
-              _jsx(
-                Description,
-                __assign({ size: 12 }, { children: survey.description }),
+              (0, jsx_runtime_1.jsx)(
+                components_1.Title,
+                Object.assign({ size: 18 }, { children: survey.title }),
               ),
-            survey.type === ESurveyTypes.SINGLE_SELECT &&
-              _jsxs(_Fragment, {
+            survey.description &&
+              (0, jsx_runtime_1.jsx)(
+                components_1.Description,
+                Object.assign({ size: 12 }, { children: survey.description }),
+              ),
+            survey.type === types_1.ESurveyTypes.SINGLE_SELECT &&
+              (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
                 children: [
-                  _jsx(
-                    Description,
-                    __assign(
+                  (0, jsx_runtime_1.jsx)(
+                    components_1.Description,
+                    Object.assign(
                       { size: 12 },
                       { children: '1\uAC1C \uC120\uD0DD \uAC00\uB2A5' },
                     ),
                   ),
-                  _jsx(OptionSelector, {
+                  (0, jsx_runtime_1.jsx)(OptionSelector_1.OptionSelector, {
                     value: survey.answer,
                     questions: survey.question,
-                    onChange: function (value) {
-                      return onUpdateSurvey(
-                        __assign(__assign({}, survey), { answer: value }),
-                      );
-                    },
+                    onChange: value =>
+                      onUpdateSurvey(
+                        Object.assign(Object.assign({}, survey), {
+                          answer: value,
+                        }),
+                      ),
                   }),
                 ],
               }),
-            survey.type === ESurveyTypes.MULTI_SELECT &&
-              _jsxs(_Fragment, {
+            survey.type === types_1.ESurveyTypes.MULTI_SELECT &&
+              (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
                 children: [
-                  _jsx(
-                    Description,
-                    __assign(
+                  (0, jsx_runtime_1.jsx)(
+                    components_1.Description,
+                    Object.assign(
                       { size: 12 },
                       { children: '1\uAC1C \uC120\uD0DD \uAC00\uB2A5' },
                     ),
                   ),
-                  _jsx(OptionMultiSelector, {
+                  (0, jsx_runtime_1.jsx)(OptionSelector_1.OptionMultiSelector, {
                     value: survey.answer,
                     questions: survey.question,
-                    onChange: function (value) {
-                      return onUpdateSurvey(
-                        __assign(__assign({}, survey), {
+                    onChange: value =>
+                      onUpdateSurvey(
+                        Object.assign(Object.assign({}, survey), {
                           answer: survey.answer.includes(value)
-                            ? survey.answer.filter(function (key) {
-                                return key !== value;
-                              })
-                            : __spreadArray(
-                                __spreadArray([], survey.answer, true),
-                                [value],
-                                false,
-                              ),
+                            ? survey.answer.filter(key => key !== value)
+                            : [...survey.answer, value],
                         }),
-                      );
-                    },
+                      ),
                   }),
                 ],
               }),
@@ -109,4 +118,4 @@ let SurveyViewers = function (_a) {
     ),
   });
 };
-export default SurveyViewers;
+exports.default = SurveyViewers;

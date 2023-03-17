@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
-let useClickOutside = function (target, callback) {
-  let handleClickAway = function (event) {
+Object.defineProperty(exports, '__esModule', { value: true });
+const react_1 = require('react');
+const useClickOutside = (target, callback) => {
+  const handleClickAway = event => {
     if (target.current && !target.current.contains(event.target)) {
       callback();
     }
   };
-  useEffect(function () {
+  (0, react_1.useEffect)(() => {
     document.addEventListener('mousedown', handleClickAway);
-    return function () {
+    return () => {
       document.removeEventListener('mousedown', handleClickAway);
     };
   });
 };
-export default useClickOutside;
+exports.default = useClickOutside;

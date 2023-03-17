@@ -1,79 +1,45 @@
-import styled from 'styled-components';
-import { colors } from '../../styles/colors';
-let __makeTemplateObject =
-  (this && this.__makeTemplateObject) ||
-  function (cooked, raw) {
-    if (Object.defineProperty) {
-      Object.defineProperty(cooked, 'raw', { value: raw });
-    } else {
-      cooked.raw = raw;
-    }
-    return cooked;
+let __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
   };
-export var Title = styled.h2(
-  templateObject_1 ||
-    (templateObject_1 = __makeTemplateObject(
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-    )),
-  function (props) {
-    return props.size || '1.5em';
-  },
-  function (props) {
-    return props.weight || 700;
-  },
-  function (props) {
-    return props.color || colors.BLACK;
-  },
-  function (props) {
-    return (
-      props.isEllipsis &&
-      '\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  '
-    );
-  },
-);
-export var Description = styled.p(
-  templateObject_2 ||
-    (templateObject_2 = __makeTemplateObject(
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-    )),
-  function (props) {
-    return props.size || '1em';
-  },
-  function (props) {
-    return props.weight || 700;
-  },
-  function (props) {
-    return props.color || colors.GRAY_ORIGIN_1;
-  },
-  function (props) {
-    return (
-      props.isEllipsis &&
-      '\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  '
-    );
-  },
-);
-export var Text = styled.p(
-  templateObject_3 ||
-    (templateObject_3 = __makeTemplateObject(
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-      ['\n  font-size: ', ';\n  font-weight: ', ';\n  color: ', ';\n  ', '\n'],
-    )),
-  function (props) {
-    return props.size || '1em';
-  },
-  function (props) {
-    return props.weight || 700;
-  },
-  function (props) {
-    return props.color || colors.BLACK;
-  },
-  function (props) {
-    return (
-      props.isEllipsis &&
-      '\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    '
-    );
-  },
-);
-let templateObject_1, templateObject_2, templateObject_3;
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.Text = exports.Description = exports.Title = void 0;
+const styled_components_1 = __importDefault(require('styled-components'));
+const colors_1 = require('../../styles/colors');
+exports.Title = styled_components_1.default.h2`
+  font-size: ${props => props.size || '1.5em'};
+  font-weight: ${props => props.weight || 700};
+  color: ${props => props.color || colors_1.colors.BLACK};
+  ${props =>
+    props.isEllipsis &&
+    `
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  `}
+`;
+exports.Description = styled_components_1.default.p`
+  font-size: ${props => props.size || '1em'};
+  font-weight: ${props => props.weight || 700};
+  color: ${props => props.color || colors_1.colors.GRAY_ORIGIN_1};
+  ${props =>
+    props.isEllipsis &&
+    `
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  `}
+`;
+exports.Text = styled_components_1.default.p`
+  font-size: ${props => props.size || '1em'};
+  font-weight: ${props => props.weight || 700};
+  color: ${props => props.color || colors_1.colors.BLACK};
+  ${props =>
+    props.isEllipsis &&
+    `
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    `}
+`;

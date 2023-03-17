@@ -1,68 +1,98 @@
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
-import { useRef, useState } from 'react';
-import { CaretDownOutlined } from '@ant-design/icons';
-import classnames from 'classnames';
-import useClickOutside from '../../hooks/useClickOutside';
-import * as S from './Dropdown.styled';
-var __assign =
-  (this && this.__assign) ||
-  function () {
-    __assign =
-      Object.assign ||
-      function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (let p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+let __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? function (o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        let desc = Object.getOwnPropertyDescriptor(m, k);
+        if (
+          !desc ||
+          ('get' in desc ? !m.__esModule : desc.writable || desc.configurable)
+        ) {
+          desc = {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          };
         }
-        return t;
-      };
-    return __assign.apply(this, arguments);
+        Object.defineProperty(o, k2, desc);
+      }
+    : function (o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        o[k2] = m[k];
+      });
+let __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? function (o, v) {
+        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+      }
+    : function (o, v) {
+        o.default = v;
+      });
+let __importStar =
+  (this && this.__importStar) ||
+  function (mod) {
+    if (mod && mod.__esModule) return mod;
+    let result = {};
+    if (mod != null)
+      for (let k in mod)
+        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k))
+          __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
   };
-let Dropdown = function (_a) {
-  let _b;
-  let items = _a.items,
-    selectedIndex = _a.selectedIndex,
-    onChange = _a.onChange;
-  let dropdownRef = useRef(null);
-  let _c = useState(false),
-    isListVisible = _c[0],
-    setIsListVisible = _c[1];
-  let _d = useState(selectedIndex || 0),
-    selectIndex = _d[0],
-    setSelectIndex = _d[1];
-  let selectedItem = items[selectIndex];
-  useClickOutside(dropdownRef, function () {
-    return setIsListVisible(false);
-  });
-  return _jsxs(
+let __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
+Object.defineProperty(exports, '__esModule', { value: true });
+const jsx_runtime_1 = require('react/jsx-runtime');
+const react_1 = require('react');
+const icons_1 = require('@ant-design/icons');
+const classnames_1 = __importDefault(require('classnames'));
+const useClickOutside_1 = __importDefault(
+  require('../../hooks/useClickOutside'),
+);
+const S = __importStar(require('./Dropdown.styled'));
+const Dropdown = ({ items, selectedIndex, onChange }) => {
+  let _a;
+  const dropdownRef = (0, react_1.useRef)(null);
+  const [isListVisible, setIsListVisible] = (0, react_1.useState)(false);
+  const [selectIndex, setSelectIndex] = (0, react_1.useState)(
+    selectedIndex || 0,
+  );
+  const selectedItem = items[selectIndex];
+  (0, useClickOutside_1.default)(dropdownRef, () => setIsListVisible(false));
+  return (0, jsx_runtime_1.jsxs)(
     S.DropdownWrap,
-    __assign(
-      {
-        ref: dropdownRef,
-        onClick: function () {
-          return setIsListVisible(true);
-        },
-      },
+    Object.assign(
+      { ref: dropdownRef, onClick: () => setIsListVisible(true) },
       {
         children: [
-          _jsxs(
+          (0, jsx_runtime_1.jsxs)(
             'div',
-            __assign(
+            Object.assign(
               { className: 'select-current-value' },
               {
                 children: [
-                  _jsx('p', {
+                  (0, jsx_runtime_1.jsx)('p', {
                     children:
-                      (_b = selectedItem.label) !== null && _b !== void 0
-                        ? _b
+                      (_a = selectedItem.label) !== null && _a !== void 0
+                        ? _a
                         : '목록에서 선택해주세요',
                   }),
-                  _jsx(
+                  (0, jsx_runtime_1.jsx)(
                     'div',
-                    __assign(
+                    Object.assign(
                       { className: 'select-icon' },
-                      { children: _jsx(CaretDownOutlined, {}) },
+                      {
+                        children: (0, jsx_runtime_1.jsx)(
+                          icons_1.CaretDownOutlined,
+                          {},
+                        ),
+                      },
                     ),
                   ),
                 ],
@@ -70,21 +100,21 @@ let Dropdown = function (_a) {
             ),
           ),
           isListVisible &&
-            _jsx(
+            (0, jsx_runtime_1.jsx)(
               'div',
-              __assign(
+              Object.assign(
                 { className: 'select-options-container' },
                 {
-                  children: items.map(function (item, index) {
-                    return _jsx(
+                  children: items.map((item, index) =>
+                    (0, jsx_runtime_1.jsx)(
                       'div',
-                      __assign(
+                      Object.assign(
                         {
-                          className: classnames({
+                          className: (0, classnames_1.default)({
                             'select-options': true,
                             selected: index === selectIndex,
                           }),
-                          onClick: function (e) {
+                          onClick: e => {
                             e.stopPropagation();
                             setSelectIndex(index);
                             onChange && onChange(item, index);
@@ -94,8 +124,8 @@ let Dropdown = function (_a) {
                         { children: item.label },
                       ),
                       index,
-                    );
-                  }),
+                    ),
+                  ),
                 },
               ),
             ),
@@ -104,4 +134,4 @@ let Dropdown = function (_a) {
     ),
   );
 };
-export default Dropdown;
+exports.default = Dropdown;

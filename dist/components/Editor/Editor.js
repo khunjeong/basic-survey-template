@@ -1,110 +1,70 @@
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
-import { useCallback, useState } from 'react';
-import { DatePicker } from 'antd';
-import dayjs from 'dayjs';
-import { v4 as uuid } from 'uuid';
-import { Article, Section, Button, Inputs } from '../../components';
-import Surveys from './Surveys';
-import { ESurveyTypes } from '../../types';
-var __assign =
-  (this && this.__assign) ||
-  function () {
-    __assign =
-      Object.assign ||
-      function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (let p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-      };
-    return __assign.apply(this, arguments);
+let __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
   };
-let __spreadArray =
-  (this && this.__spreadArray) ||
-  function (to, from, pack) {
-    if (pack || arguments.length === 2)
-      for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-          ar[i] = from[i];
-        }
-      }
-    return to.concat(ar || Array.prototype.slice.call(from));
-  };
-let RangePicker = DatePicker.RangePicker;
-let dateFormat = 'YYYY-MM-DD';
-let nowDate = dayjs();
-let Editor = function (_a) {
-  let onSubmit = _a.onSubmit;
-  let _b = useState(''),
-    title = _b[0],
-    setTitle = _b[1];
-  let _c = useState(''),
-    description = _c[0],
-    setDescription = _c[1];
-  let _d = useState(nowDate.format(dateFormat)),
-    startDate = _d[0],
-    setStartDate = _d[1];
-  let _e = useState(nowDate.add(1, 'd').format(dateFormat)),
-    endDate = _e[0],
-    setEndDate = _e[1];
-  let _f = useState([]),
-    surveyContents = _f[0],
-    setSurveyContents = _f[1];
-  let addSurveyContent = useCallback(
-    function () {
-      setSurveyContents(
-        __spreadArray(
-          __spreadArray([], surveyContents, true),
-          [
-            {
-              id: uuid(),
-              type: ESurveyTypes.BLANK,
-              required: false,
-            },
-          ],
-          false,
-        ),
-      );
-    },
-    [surveyContents],
+Object.defineProperty(exports, '__esModule', { value: true });
+const jsx_runtime_1 = require('react/jsx-runtime');
+const react_1 = require('react');
+const antd_1 = require('antd');
+const dayjs_1 = __importDefault(require('dayjs'));
+const uuid_1 = require('uuid');
+const components_1 = require('../../components');
+const Surveys_1 = __importDefault(require('./Surveys'));
+const types_1 = require('../../types');
+const { RangePicker } = antd_1.DatePicker;
+const dateFormat = 'YYYY-MM-DD';
+const nowDate = (0, dayjs_1.default)();
+const Editor = ({ onSubmit }) => {
+  const [title, setTitle] = (0, react_1.useState)('');
+  const [description, setDescription] = (0, react_1.useState)('');
+  const [startDate, setStartDate] = (0, react_1.useState)(
+    nowDate.format(dateFormat),
   );
-  let onUpdateSurvey = function (survey) {
+  const [endDate, setEndDate] = (0, react_1.useState)(
+    nowDate.add(1, 'd').format(dateFormat),
+  );
+  const [surveyContents, setSurveyContents] = (0, react_1.useState)([]);
+  const addSurveyContent = (0, react_1.useCallback)(() => {
+    setSurveyContents([
+      ...surveyContents,
+      {
+        id: (0, uuid_1.v4)(),
+        type: types_1.ESurveyTypes.BLANK,
+        required: false,
+      },
+    ]);
+  }, [surveyContents]);
+  const onUpdateSurvey = survey => {
     setSurveyContents(
-      surveyContents.map(function (content) {
-        return content.id === survey.id ? survey : content;
-      }),
+      surveyContents.map(content =>
+        content.id === survey.id ? survey : content,
+      ),
     );
   };
-  let onRemoveSurvey = function (id) {
-    setSurveyContents(
-      surveyContents.filter(function (content) {
-        return content.id !== id;
-      }),
-    );
+  const onRemoveSurvey = id => {
+    setSurveyContents(surveyContents.filter(content => content.id !== id));
   };
-  return _jsxs(Article, {
+  return (0, jsx_runtime_1.jsxs)(components_1.Article, {
     children: [
-      _jsx(Section, {
-        children: _jsx(RangePicker, {
+      (0, jsx_runtime_1.jsx)(components_1.Section, {
+        children: (0, jsx_runtime_1.jsx)(RangePicker, {
           defaultValue: [
-            dayjs(startDate, dateFormat),
-            dayjs(endDate, dateFormat),
+            (0, dayjs_1.default)(startDate, dateFormat),
+            (0, dayjs_1.default)(endDate, dateFormat),
           ],
           format: dateFormat,
-          onChange: function (rangeValue) {
+          onChange: rangeValue => {
             if (rangeValue) {
               setStartDate(
-                dayjs(
+                (0, dayjs_1.default)(
                   rangeValue === null || rangeValue === void 0
                     ? void 0
                     : rangeValue[0],
                 ).format(dateFormat),
               );
               setEndDate(
-                dayjs(
+                (0, dayjs_1.default)(
                   rangeValue === null || rangeValue === void 0
                     ? void 0
                     : rangeValue[1],
@@ -114,65 +74,59 @@ let Editor = function (_a) {
           },
         }),
       }),
-      _jsxs(Section, {
+      (0, jsx_runtime_1.jsxs)(components_1.Section, {
         children: [
-          _jsx(Inputs, {
+          (0, jsx_runtime_1.jsx)(components_1.Inputs, {
             placeholder:
               '\uC124\uBB38 \uC81C\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694',
             value: title,
-            onChange: function (e) {
-              return setTitle(e.target.value);
-            },
+            onChange: e => setTitle(e.target.value),
           }),
-          _jsx(Inputs, {
+          (0, jsx_runtime_1.jsx)(components_1.Inputs, {
             placeholder:
               '\uC124\uBB38 \uC124\uBA85\uC744 \uC785\uB825\uD558\uC138\uC694',
             value: description,
-            onChange: function (e) {
-              return setDescription(e.target.value);
-            },
+            onChange: e => setDescription(e.target.value),
           }),
         ],
       }),
-      _jsx(Section, {
-        children: surveyContents.map(function (content) {
-          return _jsx(
-            Surveys,
+      (0, jsx_runtime_1.jsx)(components_1.Section, {
+        children: surveyContents.map(content =>
+          (0, jsx_runtime_1.jsx)(
+            Surveys_1.default,
             {
               survey: content,
               onUpdateSurvey: onUpdateSurvey,
               onRemoveSurvey: onRemoveSurvey,
             },
             content.id,
-          );
-        }),
+          ),
+        ),
       }),
-      _jsx(Section, {
-        children: _jsx(
-          Button,
-          __assign(
+      (0, jsx_runtime_1.jsx)(components_1.Section, {
+        children: (0, jsx_runtime_1.jsx)(
+          components_1.Button,
+          Object.assign(
             { onClick: addSurveyContent },
             { children: '\uAD6C\uC131\uCD94\uAC00' },
           ),
         ),
       }),
-      _jsx(Section, {
-        children: _jsx(
-          Button,
-          __assign(
+      (0, jsx_runtime_1.jsx)(components_1.Section, {
+        children: (0, jsx_runtime_1.jsx)(
+          components_1.Button,
+          Object.assign(
             {
-              onClick: function () {
-                return onSubmit({
-                  title: title,
-                  description: description,
-                  content: surveyContents.filter(function (_a) {
-                    let type = _a.type;
-                    return type !== ESurveyTypes.BLANK;
-                  }),
-                  startDate: startDate,
-                  endDate: endDate,
-                });
-              },
+              onClick: () =>
+                onSubmit({
+                  title,
+                  description,
+                  content: surveyContents.filter(
+                    ({ type }) => type !== types_1.ESurveyTypes.BLANK,
+                  ),
+                  startDate,
+                  endDate,
+                }),
             },
             { children: '\uC804\uC1A1\uD558\uAE30' },
           ),
@@ -181,4 +135,4 @@ let Editor = function (_a) {
     ],
   });
 };
-export default Editor;
+exports.default = Editor;

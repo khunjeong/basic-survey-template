@@ -1,6 +1,7 @@
 const CracoAlias = require('craco-alias');
 
 module.exports = {
+  external: ['react', 'react-dom'],
   plugins: [
     {
       plugin: CracoAlias,
@@ -11,4 +12,18 @@ module.exports = {
       },
     },
   ],
+  webpack: {
+    configure: {
+      module: {
+        rules: [
+          {
+            test: /\.m?js$/,
+            resolve: {
+              fullySpecified: false,
+            },
+          },
+        ],
+      },
+    },
+  },
 };

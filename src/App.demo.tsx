@@ -13,6 +13,7 @@ const App: FC = () => {
   useEffect(() => {
     console.log({ result });
   }, [result]);
+
   return (
     <div className='App'>
       <Reset />

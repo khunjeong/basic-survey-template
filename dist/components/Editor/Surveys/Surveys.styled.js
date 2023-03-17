@@ -1,21 +1,14 @@
-import styled from 'styled-components';
-import { colors } from '../../../styles/colors';
-let __makeTemplateObject =
-  (this && this.__makeTemplateObject) ||
-  function (cooked, raw) {
-    if (Object.defineProperty) {
-      Object.defineProperty(cooked, 'raw', { value: raw });
-    } else {
-      cooked.raw = raw;
-    }
-    return cooked;
+let __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
   };
-export var SurveyContainer = styled.div(
-  templateObject_1 ||
-    (templateObject_1 = __makeTemplateObject(
-      ['\n  width: 100%;\n  border: 1px solid ', ';\n  padding: 16px;\n'],
-      ['\n  width: 100%;\n  border: 1px solid ', ';\n  padding: 16px;\n'],
-    )),
-  colors.BLUE_ORIGIN,
-);
-let templateObject_1;
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.SurveyContainer = void 0;
+const styled_components_1 = __importDefault(require('styled-components'));
+const colors_1 = require('../../../styles/colors');
+exports.SurveyContainer = styled_components_1.default.div`
+  width: 100%;
+  border: 1px solid ${colors_1.colors.BLUE_ORIGIN};
+  padding: 16px;
+`;

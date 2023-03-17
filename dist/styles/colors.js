@@ -1,4 +1,6 @@
-export var colors = {
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.colors = void 0;
+exports.colors = {
   PRIMARY: '#45D6C8',
   PRIMARY_BRIGHT: '#97EEE6',
   PRIMARY_LIGHT: '#EBFFFD',

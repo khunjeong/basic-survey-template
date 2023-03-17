@@ -1,15 +1,17 @@
 {
   "name": "@khunjeong/basic-survey-template",
-  "version": "0.0.3",
+  "version": "0.0.27",
   "author": {
     "name": "khunjeong",
     "email": "woghdkgj4456@gmail.com"
   },
   "private": false,
-  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "browser": "./browser/specific/main.js",
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
   "dependencies": {
     "@craco/craco": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,8 +26,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.8",
@@ -42,7 +42,7 @@
     "eject": "react-scripts eject",
     "build:test": "rm -rf ./dist & tsc --outDir ./dist -d",
     "build:tsc": "rm -rf ./dist & tsc",
-    "publish:npm": "rm -rf dist && mkdir dist && tsc"
+    "publish:npm": "rm -rf dist && mkdir dist && tsc -p tsconfig.json"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -70,6 +70,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
