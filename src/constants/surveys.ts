@@ -7,4 +7,5 @@ export const surveyList = Object.keys(ESurveyTypes).map((value, index) => ({
   key: uuid(),
   label: getNameFromSurveyType(value.toLowerCase() as ESurveyTypes),
   value,
+  image: '',
 }));

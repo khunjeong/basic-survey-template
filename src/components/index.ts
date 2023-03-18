@@ -3,6 +3,6 @@ export * from './Container';
 export { DefaultModeEditor } from './DefaultMode';
 export { default as Dropdown } from './Dropdown';
 export { default as Editor } from './Editor';
-export { default as Inputs } from './Inputs';
+export * from './Inputs';
 export * from './Text';
 export { default as Viewer } from './Viewer';

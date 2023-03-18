@@ -23,6 +23,7 @@ export interface IDropdownOption {
   label?: string;
   value: string;
   index: number;
+  image: string;
 }
 
 export type TypedSurvey<T extends ESurveyTypes> = Extract<TSurvey, { type: T }>;
