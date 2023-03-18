@@ -41,6 +41,7 @@ export interface ISurveyMultiSelect extends ISurvey {
   type: ESurveyTypes.MULTI_SELECT;
   question: IDropdownOption[];
   answer: string[];
+  maxChoice: number;
 }
 
 export interface ISurveyResult {

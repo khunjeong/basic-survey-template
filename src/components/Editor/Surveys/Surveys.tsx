@@ -40,6 +40,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
           Object.assign(blockShape, {
             question: [] as IDropdownOption[],
             answer: [] as string[],
+            maxChoice: 0,
           }) as TypedSurvey<ESurveyTypes.MULTI_SELECT>,
         );
         break;
