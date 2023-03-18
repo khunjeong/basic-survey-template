@@ -1,8 +1,9 @@
 import { ReactElement, useCallback, useState } from 'react';
 import { DatePicker } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
-import { Article, Section, Button, Inputs } from '../../components';
+import { Article, Section, Button, Inputs, FlexDiv, Description } from '../../components';
 import Surveys from './Surveys';
 import { ESurveyTypes, TDate, TSurvey } from '../../types';
 import { IEditorProps } from './Editor.type';
@@ -12,7 +13,12 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';
 const nowDate = dayjs();
 
-const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
+const Editor = <T extends IEditorProps>({
+  // defaultValue,
+  onSubmit,
+  submitButtonText,
+  onClose,
+}: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [startDate, setStartDate] = useState<TDate>(nowDate.format(dateFormat));
@@ -41,6 +47,10 @@ const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
 
   return (
     <Article>
+      <FlexDiv justifyContent='space-between'>
+        <Description>※ 글 등록 이후에는 수정할 수 없습니다.</Description>
+        <CloseCircleOutlined style={{ cursor: 'pointer' }} onClick={onClose} />
+      </FlexDiv>
       <Section>
         <RangePicker
           defaultValue={[dayjs(startDate, dateFormat), dayjs(endDate, dateFormat)]}
@@ -65,6 +75,7 @@ const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
           onChange={e => setDescription(e.target.value)}
         />
       </Section>
+
       <Section>
         {surveyContents.map(content => (
           <Surveys
@@ -78,20 +89,22 @@ const Editor = <T extends IEditorProps>({ onSubmit }: T): ReactElement<T> => {
       <Section>
         <Button onClick={addSurveyContent}>구성추가</Button>
       </Section>
-      <Section>
-        <Button
-          onClick={() =>
-            onSubmit({
-              title,
-              description,
-              content: surveyContents.filter(({ type }) => type !== ESurveyTypes.BLANK),
-              startDate,
-              endDate,
-            })
-          }>
-          전송하기
-        </Button>
-      </Section>
+      {onSubmit && (
+        <Section>
+          <Button
+            onClick={() =>
+              onSubmit({
+                title,
+                description,
+                content: surveyContents.filter(({ type }) => type !== ESurveyTypes.BLANK),
+                startDate,
+                endDate,
+              })
+            }>
+            {submitButtonText || '전송하기'}
+          </Button>
+        </Section>
+      )}
     </Article>
   );
 };

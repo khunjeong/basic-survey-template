@@ -51,3 +51,8 @@ export interface ISurveyResult {
   startDate: TDate;
   endDate: TDate;
 }
+
+export interface IDefaultModeSurveyResult extends ISurveyMultiSelect {
+  startDate: TDate;
+  endDate: TDate;
+}
