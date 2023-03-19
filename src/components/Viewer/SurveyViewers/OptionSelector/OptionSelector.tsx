@@ -14,12 +14,12 @@ export const OptionSelector = <T extends IOptionSelectorProps>({
       {questions.map(question => {
         return (
           <S.OptionSelectItem
-            key={question.key}
+            key={question.id}
             className={classnames({
-              selected: value === question.key,
+              selected: value === question.id,
             })}
-            onClick={() => onChange(question.key)}>
-            <Text>{question.value}</Text>
+            onClick={() => onChange(question.id)}>
+            <Text>{question.item}</Text>
           </S.OptionSelectItem>
         );
       })}
@@ -37,12 +37,12 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
       {questions.map(question => {
         return (
           <S.OptionSelectItem
-            key={question.key}
+            key={question.id}
             className={classnames({
-              selected: value.includes(question.key),
+              selected: value.includes(question.id),
             })}
-            onClick={() => onChange(question.key)}>
-            <Text>{question.value}</Text>
+            onClick={() => onChange(question.id)}>
+            <Text>{question.item}</Text>
           </S.OptionSelectItem>
         );
       })}

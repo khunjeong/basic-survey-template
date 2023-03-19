@@ -24,7 +24,7 @@ const OptionEditor = <T extends IOptionEditorProps>({
       // setSignupProfileFile(file);
       onUpdateOption(
         items.map(question =>
-          question.key === key
+          question.id === key
             ? { ...question, image: URL.createObjectURL(new Blob([file])) }
             : question,
         ),
@@ -35,20 +35,20 @@ const OptionEditor = <T extends IOptionEditorProps>({
   return (
     <S.OptionEditorContainer>
       {items.map(item => (
-        <FlexDiv key={item.key} style={{ gap: 16 }}>
-          <MinusCircleOutlined onClick={() => onRemoveOption(item.key)} />
+        <FlexDiv key={item.id} style={{ gap: 16 }}>
+          <MinusCircleOutlined onClick={() => onRemoveOption(item.id)} />
           <UploadInput
             placeholder='항목 입력'
-            value={item.value}
+            value={item.item}
             onChange={e =>
               onUpdateOption(
                 items.map(question =>
-                  question.key === item.key ? { ...question, value: e.target.value } : question,
+                  question.id === item.id ? { ...question, item: e.target.value } : question,
                 ),
               )
             }
             previewFileSrc={item.image}
-            handleUpdateImg={target => updateImg({ target, key: item.key })}
+            handleUpdateImg={target => updateImg({ target, key: item.id })}
           />
         </FlexDiv>
       ))}
@@ -59,8 +59,8 @@ const OptionEditor = <T extends IOptionEditorProps>({
           onAddOption([
             ...items,
             {
-              key: uuid(),
-              value: '',
+              id: uuid(),
+              item: '',
               index: items.length + 1,
               image: '',
             },

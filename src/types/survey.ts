@@ -19,9 +19,9 @@ export interface ISurvey {
 export type TSurvey = ISurveyBlank | ISurveySingleSelect | ISurveyMultiSelect;
 
 export interface IDropdownOption {
-  key: string;
+  id: string;
   label?: string;
-  value: string;
+  item: string;
   index: number;
   image: string;
 }

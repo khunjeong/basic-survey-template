@@ -20,7 +20,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
   const onSelect = (value: IDropdownOption) => {
     const blockShape = {
       ...survey,
-      type: value.value.toLowerCase() as ESurveyTypes,
+      type: value.item.toLowerCase() as ESurveyTypes,
     };
 
     switch (blockShape.type) {
@@ -55,7 +55,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
         <Text>{surveyType ? getNameFromSurveyType(surveyType) : '설문 유형을 선택하세요'}</Text>
         <Dropdown
           items={surveyList}
-          selectedIndex={surveyList.findIndex(v => v.value.toLowerCase() === survey.type)}
+          selectedIndex={surveyList.findIndex(v => v.item.toLowerCase() === survey.type)}
           onChange={onSelect}
         />
       </FlexDiv>
@@ -87,7 +87,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
               onRemoveOption={id =>
                 onUpdateSurvey({
                   ...survey,
-                  question: survey.question.filter(question => question.key !== id),
+                  question: survey.question.filter(question => question.id !== id),
                 })
               }
             />

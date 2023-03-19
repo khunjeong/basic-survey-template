@@ -81,7 +81,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
               onRemoveOption={id =>
                 setSurveyData({
                   ...surveyData,
-                  question: surveyData.question.filter(question => question.key !== id),
+                  question: surveyData.question.filter(question => question.id !== id),
                 })
               }
             />
