@@ -20,9 +20,14 @@ export const UploadInput = <T extends IUploadInputProps>(props: T): ReactElement
   return (
     <S.UploadInputContainer>
       <input className='question' {...props} />
-      {previewFileSrc.length ? (
+      {previewFileSrc !== null ? (
         <button>
-          <img className='preview' src={previewFileSrc} onClick={onUploadClick} />
+          <img
+            className='preview'
+            src={previewFileSrc}
+            alt='question_Image'
+            onClick={onUploadClick}
+          />
         </button>
       ) : (
         <button className='upload' onClick={onUploadClick}>

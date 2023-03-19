@@ -27,30 +27,30 @@ export const UploadInputContainer = styled.div`
   position: relative;
   ${BaseInputCss};
   
-  button {
-    position: absolute;
-    overflow: hidden;
-    background: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 2px;
-    width: 44px;
-    height: 44px;
-    top: 4px;
-    right: 4px;
-    img {
-      object-fit: cover;
+    button {
+      position: absolute;
+      overflow: hidden;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
       width: 44px;
       height: 44px;
+      top: 4px;
+      right: 4px;
+      img {
+        object-fit: cover;
+        width: 44px;
+        height: 44px;
+      }
     }
-  }
-  .question {
-    width: 100%;
-    border: none;
-    &:focus,
-    &:active {
-      outline: none !important;
+    .question {
+      width: 100%;
+      border: none;
+      &:focus,
+      &:active {
+        outline: none !important;
+      }
     }
-  }
   }
 `;

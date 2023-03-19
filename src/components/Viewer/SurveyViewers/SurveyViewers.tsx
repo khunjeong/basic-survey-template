@@ -19,7 +19,7 @@ const SurveyViewers = <T extends ISurveyViewersProps>({
             <Description size={12}>1개 선택 가능</Description>
             <OptionSelector
               value={survey.answer}
-              questions={survey.question}
+              questions={survey.questions}
               onChange={value => onUpdateSurvey({ ...survey, answer: value })}
             />
           </>
@@ -29,7 +29,7 @@ const SurveyViewers = <T extends ISurveyViewersProps>({
             <Description size={12}>1개 선택 가능</Description>
             <OptionMultiSelector
               value={survey.answer}
-              questions={survey.question}
+              questions={survey.questions}
               onChange={value =>
                 onUpdateSurvey({
                   ...survey,

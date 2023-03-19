@@ -29,14 +29,13 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
   submitButtonText,
 }: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
   const [startDate, setStartDate] = useState<TDate>(nowDate.format(dateFormat));
   const [endDate, setEndDate] = useState<TDate>(nowDate.add(1, 'd').format(dateFormat));
   const [surveyData, setSurveyData] = useState<TSurvey>({
     id: uuid(),
     type: ESurveyTypes.MULTI_SELECT,
     required: false,
-    question: [],
+    questions: [],
     answer: [],
     maxChoice: 1,
   });
@@ -44,7 +43,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
   return (
     <Article>
       <FlexDiv justifyContent='space-between'>
-        <Description>※ 글 등록 이후에는 수정할 수 없습니다.</Description>
+        <Description size={12}>※ 글 등록 이후에는 수정할 수 없습니다.</Description>
         <CloseCircleOutlined style={{ cursor: 'pointer' }} onClick={onClose} />
       </FlexDiv>
       <Section>
@@ -61,33 +60,28 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
       </Section>
       <Section>
         <Inputs
-          placeholder='설문 제목을 입력하세요'
+          placeholder='투표 제목을 입력하세요'
           value={title}
           onChange={e => setTitle(e.target.value)}
-        />
-        <Inputs
-          placeholder='설문 설명을 입력하세요'
-          value={description}
-          onChange={e => setDescription(e.target.value)}
         />
       </Section>
       {surveyData.type === ESurveyTypes.MULTI_SELECT && (
         <>
           <Section>
             <OptionEditor
-              items={surveyData.question}
-              onAddOption={items => setSurveyData({ ...surveyData, question: items })}
-              onUpdateOption={items => setSurveyData({ ...surveyData, question: items })}
+              items={surveyData.questions}
+              onAddOption={items => setSurveyData({ ...surveyData, questions: items })}
+              onUpdateOption={items => setSurveyData({ ...surveyData, questions: items })}
               onRemoveOption={id =>
                 setSurveyData({
                   ...surveyData,
-                  question: surveyData.question.filter(question => question.id !== id),
+                  questions: surveyData.questions.filter(question => question.id !== id),
                 })
               }
             />
           </Section>
 
-          <Section>
+          <Section style={{ margin: '16px 0' }}>
             <FlexDiv justifyContent='space-between' style={{ gap: 16 }}>
               <FlexDiv style={{ gap: 16 }}>
                 <CheckOutlined style={{ color: colors.GRAY_BRIGHT_1 }} />
@@ -126,7 +120,6 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
                   onSubmit({
                     ...surveyData,
                     title,
-                    description,
                     startDate,
                     endDate,
                   })

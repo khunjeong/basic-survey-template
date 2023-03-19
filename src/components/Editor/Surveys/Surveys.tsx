@@ -30,7 +30,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
       case ESurveyTypes.SINGLE_SELECT:
         onUpdateSurvey(
           Object.assign(blockShape, {
-            question: [] as IDropdownOption[],
+            questions: [] as IDropdownOption[],
             answer: null,
           }) as TypedSurvey<ESurveyTypes.SINGLE_SELECT>,
         );
@@ -38,7 +38,7 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
       case ESurveyTypes.MULTI_SELECT:
         onUpdateSurvey(
           Object.assign(blockShape, {
-            question: [] as IDropdownOption[],
+            questions: [] as IDropdownOption[],
             answer: [] as string[],
             maxChoice: 1,
           }) as TypedSurvey<ESurveyTypes.MULTI_SELECT>,
@@ -81,13 +81,13 @@ const Surveys = <T extends ISurveyDisplay>({ survey, onUpdateSurvey, onRemoveSur
           {(surveyType === ESurveyTypes.SINGLE_SELECT ||
             surveyType === ESurveyTypes.MULTI_SELECT) && (
             <OptionEditor
-              items={survey.question}
-              onAddOption={items => onUpdateSurvey({ ...survey, question: items })}
-              onUpdateOption={items => onUpdateSurvey({ ...survey, question: items })}
+              items={survey.questions}
+              onAddOption={items => onUpdateSurvey({ ...survey, questions: items })}
+              onUpdateOption={items => onUpdateSurvey({ ...survey, questions: items })}
               onRemoveOption={id =>
                 onUpdateSurvey({
                   ...survey,
-                  question: survey.question.filter(question => question.id !== id),
+                  questions: survey.questions.filter(question => question.id !== id),
                 })
               }
             />

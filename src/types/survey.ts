@@ -34,13 +34,13 @@ export interface ISurveyBlank extends ISurvey {
 
 export interface ISurveySingleSelect extends ISurvey {
   type: ESurveyTypes.SINGLE_SELECT;
-  question: IDropdownOption[];
+  questions: IDropdownOption[];
   answer: string | null;
 }
 
 export interface ISurveyMultiSelect extends ISurvey {
   type: ESurveyTypes.MULTI_SELECT;
-  question: IDropdownOption[];
+  questions: IDropdownOption[];
   answer: string[];
   maxChoice: number;
 }

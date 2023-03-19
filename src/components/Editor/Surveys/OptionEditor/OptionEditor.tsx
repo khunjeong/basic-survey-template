@@ -47,7 +47,7 @@ const OptionEditor = <T extends IOptionEditorProps>({
                 ),
               )
             }
-            previewFileSrc={item.image}
+            previewFileSrc={item.image || null}
             handleUpdateImg={target => updateImg({ target, key: item.id })}
           />
         </FlexDiv>
