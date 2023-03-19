@@ -10,9 +10,9 @@ import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
 import { Article, Button, Section, Inputs, FlexDiv, Description, Text } from '../../../components';
-import OptionEditor from 'src/components/Editor/Surveys/OptionEditor/OptionEditor';
+import OptionEditor from '../../../components/Editor/Surveys/OptionEditor/OptionEditor';
 
-import { colors } from 'src/styles/colors';
+import { colors } from '../../../styles/colors';
 import * as S from './DefaultModeEditor.styled';
 
 import { ESurveyTypes, TDate, TSurvey } from '../../../types';

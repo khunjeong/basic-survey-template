@@ -3,4 +3,5 @@ export declare const surveyList: {
   key: string;
   label: string;
   value: string;
+  image: string;
 }[];

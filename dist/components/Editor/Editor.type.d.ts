@@ -1,4 +1,7 @@
 import { ISurveyResult } from '../../types';
 export interface IEditorProps {
-  onSubmit: (result: ISurveyResult) => void;
+  defaultValue?: ISurveyResult;
+  onSubmit?: (result: ISurveyResult) => void;
+  submitButtonText?: string;
+  onClose?: () => void;
 }

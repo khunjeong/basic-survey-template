@@ -17,6 +17,7 @@ export interface IDropdownOption {
   label?: string;
   value: string;
   index: number;
+  image: string;
 }
 export type TypedSurvey<T extends ESurveyTypes> = Extract<
   TSurvey,
@@ -36,11 +37,16 @@ export interface ISurveyMultiSelect extends ISurvey {
   type: ESurveyTypes.MULTI_SELECT;
   question: IDropdownOption[];
   answer: string[];
+  maxChoice: number;
 }
 export interface ISurveyResult {
   title: string;
   description?: string;
   content: TSurvey[];
+  startDate: TDate;
+  endDate: TDate;
+}
+export interface IDefaultModeSurveyResult extends ISurveyMultiSelect {
   startDate: TDate;
   endDate: TDate;
 }

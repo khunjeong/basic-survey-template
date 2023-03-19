@@ -42,6 +42,39 @@ let __importStar =
     __setModuleDefault(result, mod);
     return result;
   };
+let __awaiter =
+  (this && this.__awaiter) ||
+  function (thisArg, _arguments, P, generator) {
+    function adopt(value) {
+      return value instanceof P
+        ? value
+        : new P(function (resolve) {
+            resolve(value);
+          });
+    }
+    return new (P || (P = Promise))(function (resolve, reject) {
+      function fulfilled(value) {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function rejected(value) {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function step(result) {
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
+      }
+      step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+  };
 Object.defineProperty(exports, '__esModule', { value: true });
 const jsx_runtime_1 = require('react/jsx-runtime');
 const icons_1 = require('@ant-design/icons');
@@ -54,6 +87,23 @@ const OptionEditor = ({
   onUpdateOption,
   onRemoveOption,
 }) => {
+  const updateImg = ({ target, key }) =>
+    __awaiter(void 0, void 0, void 0, function* () {
+      if (target.target.files) {
+        const file = target.target.files[0];
+        // 이미지 파일 저장
+        // setSignupProfileFile(file);
+        onUpdateOption(
+          items.map(question =>
+            question.key === key
+              ? Object.assign(Object.assign({}, question), {
+                  image: URL.createObjectURL(new Blob([file])),
+                })
+              : question,
+          ),
+        );
+      }
+    });
   return (0, jsx_runtime_1.jsxs)(S.OptionEditorContainer, {
     children: [
       items.map(item =>
@@ -66,7 +116,7 @@ const OptionEditor = ({
                 (0, jsx_runtime_1.jsx)(icons_1.MinusCircleOutlined, {
                   onClick: () => onRemoveOption(item.key),
                 }),
-                (0, jsx_runtime_1.jsx)(components_1.Inputs, {
+                (0, jsx_runtime_1.jsx)(components_1.UploadInput, {
                   placeholder: '\uD56D\uBAA9 \uC785\uB825',
                   value: item.value,
                   onChange: e =>
@@ -79,6 +129,9 @@ const OptionEditor = ({
                           : question,
                       ),
                     ),
+                  previewFileSrc: item.image,
+                  handleUpdateImg: target =>
+                    updateImg({ target, key: item.key }),
                 }),
               ],
             },
@@ -98,6 +151,7 @@ const OptionEditor = ({
                   key: (0, uuid_1.v4)(),
                   value: '',
                   index: items.length + 1,
+                  image: '',
                 },
               ]),
           },

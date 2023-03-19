@@ -7,6 +7,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const jsx_runtime_1 = require('react/jsx-runtime');
 const react_1 = require('react');
 const antd_1 = require('antd');
+const icons_1 = require('@ant-design/icons');
 const dayjs_1 = __importDefault(require('dayjs'));
 const uuid_1 = require('uuid');
 const components_1 = require('../../components');
@@ -15,7 +16,12 @@ const types_1 = require('../../types');
 const { RangePicker } = antd_1.DatePicker;
 const dateFormat = 'YYYY-MM-DD';
 const nowDate = (0, dayjs_1.default)();
-const Editor = ({ onSubmit }) => {
+const Editor = ({
+  // defaultValue,
+  onSubmit,
+  submitButtonText,
+  onClose,
+}) => {
   const [title, setTitle] = (0, react_1.useState)('');
   const [description, setDescription] = (0, react_1.useState)('');
   const [startDate, setStartDate] = (0, react_1.useState)(
@@ -47,6 +53,24 @@ const Editor = ({ onSubmit }) => {
   };
   return (0, jsx_runtime_1.jsxs)(components_1.Article, {
     children: [
+      (0, jsx_runtime_1.jsxs)(
+        components_1.FlexDiv,
+        Object.assign(
+          { justifyContent: 'space-between' },
+          {
+            children: [
+              (0, jsx_runtime_1.jsx)(components_1.Description, {
+                children:
+                  '\u203B \uAE00 \uB4F1\uB85D \uC774\uD6C4\uC5D0\uB294 \uC218\uC815\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.',
+              }),
+              (0, jsx_runtime_1.jsx)(icons_1.CloseCircleOutlined, {
+                style: { cursor: 'pointer' },
+                onClick: onClose,
+              }),
+            ],
+          },
+        ),
+      ),
       (0, jsx_runtime_1.jsx)(components_1.Section, {
         children: (0, jsx_runtime_1.jsx)(RangePicker, {
           defaultValue: [
@@ -112,26 +136,27 @@ const Editor = ({ onSubmit }) => {
           ),
         ),
       }),
-      (0, jsx_runtime_1.jsx)(components_1.Section, {
-        children: (0, jsx_runtime_1.jsx)(
-          components_1.Button,
-          Object.assign(
-            {
-              onClick: () =>
-                onSubmit({
-                  title,
-                  description,
-                  content: surveyContents.filter(
-                    ({ type }) => type !== types_1.ESurveyTypes.BLANK,
-                  ),
-                  startDate,
-                  endDate,
-                }),
-            },
-            { children: '\uC804\uC1A1\uD558\uAE30' },
+      onSubmit &&
+        (0, jsx_runtime_1.jsx)(components_1.Section, {
+          children: (0, jsx_runtime_1.jsx)(
+            components_1.Button,
+            Object.assign(
+              {
+                onClick: () =>
+                  onSubmit({
+                    title,
+                    description,
+                    content: surveyContents.filter(
+                      ({ type }) => type !== types_1.ESurveyTypes.BLANK,
+                    ),
+                    startDate,
+                    endDate,
+                  }),
+              },
+              { children: submitButtonText || '전송하기' },
+            ),
           ),
-        ),
-      }),
+        }),
     ],
   });
 };

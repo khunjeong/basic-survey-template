@@ -1,4 +1,4 @@
 import * as SurveyType from './types/survey';
-import { Editor, Viewer } from './components';
+import { Editor, Viewer, DefaultModeEditor } from './components';
 export type { SurveyType };
-export { Editor, Viewer };
+export { Editor, Viewer, DefaultModeEditor };

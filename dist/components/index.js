@@ -35,9 +35,9 @@ let __importDefault =
   };
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.Viewer =
-  exports.Inputs =
   exports.Editor =
   exports.Dropdown =
+  exports.DefaultModeEditor =
   exports.Button =
     void 0;
 let Button_1 = require('./Button');
@@ -48,6 +48,13 @@ Object.defineProperty(exports, 'Button', {
   },
 });
 __exportStar(require('./Container'), exports);
+let DefaultMode_1 = require('./DefaultMode');
+Object.defineProperty(exports, 'DefaultModeEditor', {
+  enumerable: true,
+  get: function () {
+    return DefaultMode_1.DefaultModeEditor;
+  },
+});
 let Dropdown_1 = require('./Dropdown');
 Object.defineProperty(exports, 'Dropdown', {
   enumerable: true,
@@ -62,13 +69,7 @@ Object.defineProperty(exports, 'Editor', {
     return __importDefault(Editor_1).default;
   },
 });
-let Inputs_1 = require('./Inputs');
-Object.defineProperty(exports, 'Inputs', {
-  enumerable: true,
-  get: function () {
-    return __importDefault(Inputs_1).default;
-  },
-});
+__exportStar(require('./Inputs'), exports);
 __exportStar(require('./Text'), exports);
 let Viewer_1 = require('./Viewer');
 Object.defineProperty(exports, 'Viewer', {

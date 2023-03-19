@@ -8,4 +8,5 @@ exports.surveyList = Object.keys(types_1.ESurveyTypes).map((value, index) => ({
   key: (0, uuid_1.v4)(),
   label: (0, converter_1.getNameFromSurveyType)(value.toLowerCase()),
   value,
+  image: '',
 }));

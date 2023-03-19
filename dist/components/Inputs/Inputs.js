@@ -43,9 +43,52 @@ let __importStar =
     return result;
   };
 Object.defineProperty(exports, '__esModule', { value: true });
+exports.UploadInput = exports.Inputs = void 0;
 const jsx_runtime_1 = require('react/jsx-runtime');
+const react_1 = require('react');
+const icons_1 = require('@ant-design/icons');
 const S = __importStar(require('./Inputs.styled'));
 const Inputs = props => {
   return (0, jsx_runtime_1.jsx)(S.Input, Object.assign({}, props));
 };
-exports.default = Inputs;
+exports.Inputs = Inputs;
+const UploadInput = props => {
+  const { previewFileSrc, handleUpdateImg } = props;
+  const imgInputRef = (0, react_1.useRef)(null);
+  const onUploadClick = e => {
+    e.stopPropagation();
+    imgInputRef.current && imgInputRef.current.click();
+  };
+  return (0, jsx_runtime_1.jsxs)(S.UploadInputContainer, {
+    children: [
+      (0, jsx_runtime_1.jsx)(
+        'input',
+        Object.assign({ className: 'question' }, props),
+      ),
+      previewFileSrc.length
+        ? (0, jsx_runtime_1.jsx)('button', {
+            children: (0, jsx_runtime_1.jsx)('img', {
+              className: 'preview',
+              src: previewFileSrc,
+              onClick: onUploadClick,
+            }),
+          })
+        : (0, jsx_runtime_1.jsx)(
+            'button',
+            Object.assign(
+              { className: 'upload', onClick: onUploadClick },
+              { children: (0, jsx_runtime_1.jsx)(icons_1.PictureOutlined, {}) },
+            ),
+          ),
+      (0, jsx_runtime_1.jsx)('input', {
+        ref: imgInputRef,
+        type: 'file',
+        name: 'file',
+        accept: 'image/*',
+        style: { display: 'none' },
+        onChange: handleUpdateImg,
+      }),
+    ],
+  });
+};
+exports.UploadInput = UploadInput;

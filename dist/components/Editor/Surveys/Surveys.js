@@ -86,6 +86,7 @@ const Surveys = ({ survey, onUpdateSurvey, onRemoveSurvey }) => {
           Object.assign(blockShape, {
             question: [],
             answer: [],
+            maxChoice: 1,
           }),
         );
         break;
