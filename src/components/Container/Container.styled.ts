@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/colors';
 import { IFlexDivProps } from './Container.type';
 
 export const FlexDiv = styled.div<IFlexDivProps>`
@@ -13,7 +12,6 @@ export const FlexDiv = styled.div<IFlexDivProps>`
 export const Article = styled.article`
   width: 100%;
   padding: 20px;
-  border: 1px solid ${colors.GRAY_BRIGHT_3};
   gap: 8px;
 `;
 

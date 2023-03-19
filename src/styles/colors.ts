@@ -36,7 +36,7 @@ export const colors = {
 
   // Gray Origin
   GRAY_ORIGIN_1: '#999999',
-  GRAY_ORIGIN_2: '#878787', // Text/Bolder
+  GRAY_ORIGIN_2: '#BFBFBF', // Text/Bolder
   GRAY_ORIGIN_3: '#777777',
 
   // Gray Strong

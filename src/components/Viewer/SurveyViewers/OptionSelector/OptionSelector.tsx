@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import classnames from 'classnames';
+import { CheckIcon } from '../../../Icons';
 import { Text } from '../../../../components';
 import * as S from './OptionSelector.styled';
 import { IOptionSelectorProps, IOptionMultiSelectorProps } from './OptionSelector.type';
@@ -42,6 +43,7 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
               selected: value.includes(question.id),
             })}
             onClick={() => onChange(question.id)}>
+            <CheckIcon />
             <Text>{question.item}</Text>
           </S.OptionSelectItem>
         );
