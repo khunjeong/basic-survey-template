@@ -1,5 +1,6 @@
 import { ChangeEvent, ReactElement } from 'react';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import Axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { FlexDiv, UploadInput, Inputs } from '../../../../components';
 import { IOptionEditorProps } from './OptionEditor.type';
@@ -10,6 +11,7 @@ const OptionEditor = <T extends IOptionEditorProps>({
   onAddOption,
   onUpdateOption,
   onRemoveOption,
+  uploadOptions,
 }: T): ReactElement<T> => {
   const updateImg = async ({
     target,
@@ -20,15 +22,41 @@ const OptionEditor = <T extends IOptionEditorProps>({
   }) => {
     if (target.target.files) {
       const file = target.target.files[0];
-      // 이미지 파일 저장
-      // setSignupProfileFile(file);
-      onUpdateOption(
-        items.map(question =>
-          question.id === key
-            ? { ...question, image: URL.createObjectURL(new Blob([file])) }
-            : question,
-        ),
-      );
+
+      if (uploadOptions) {
+        const { actionUrl, authorization } = uploadOptions;
+        const customAxios = Axios.create({
+          baseURL: '/',
+          timeout: 10000,
+        });
+        customAxios.defaults.headers.common.Authorization = `Bearer ${authorization}`;
+        const formData = new FormData();
+        formData.append('file', file);
+
+        customAxios
+          .post(actionUrl, formData, {
+            headers: {
+              'content-type': 'multipart/form-data',
+            },
+          })
+          .then(res => {
+            onUpdateOption(
+              items.map(question =>
+                question.id === key ? { ...question, image: res.data.data } : question,
+              ),
+            );
+          })
+          .catch(error => console.log({ error }));
+      } else {
+        // 이미지 파일 저장
+        onUpdateOption(
+          items.map(question =>
+            question.id === key
+              ? { ...question, image: URL.createObjectURL(new Blob([file])) }
+              : question,
+          ),
+        );
+      }
     }
   };
 

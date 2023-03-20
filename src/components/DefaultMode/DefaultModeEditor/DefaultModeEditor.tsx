@@ -27,6 +27,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
   onClose,
   onSubmit,
   submitButtonText,
+  uploadOptions,
 }: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
   const [startDate, setStartDate] = useState<TDate>(nowDate.format(dateFormat));
@@ -78,6 +79,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
                   questions: surveyData.questions.filter(question => question.id !== id),
                 })
               }
+              uploadOptions={uploadOptions}
             />
           </Section>
 

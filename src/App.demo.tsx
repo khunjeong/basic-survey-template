@@ -11,7 +11,7 @@ import {
   FlexDiv,
   Viewer,
 } from './components';
-import { ISurveyResult, IDefaultModeSurveyResult } from './types';
+import { ISurveyResult, IDefaultModeSurveyResult, IUploadOptions } from './types';
 import { Reset } from 'styled-reset';
 
 const App: FC = () => {
@@ -20,6 +20,13 @@ const App: FC = () => {
   useEffect(() => {
     console.log({ result });
   }, [result]);
+
+  const uploadOptions: IUploadOptions = {
+    baseUrl: 'http://ip-set-nlp-2cce1cff97b66aa1.elb.ap-northeast-2.amazonaws.com',
+    actionUrl: '/post/image',
+    authorization:
+      'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiYXV0aCI6IlVTRVJfUk9MRSIsImV4cCI6MTY4MDQ5NzU2M30.eKE3QzWMDJ_KIK4wlMLZyL0DvJdTSpgv_1PttsplB1loIAADzPaf3wZRy6eZt0F_zEoPpLvtAAad1HXB9imotQ',
+  };
 
   return (
     <div className='App'>
@@ -43,6 +50,7 @@ const App: FC = () => {
         <DefaultModeEditor
           onClose={() => console.log('11111')}
           onSubmit={result => setDefaultResult(result)}
+          uploadOptions={uploadOptions}
         />
         {defaultResult && (
           <DefaultModeViewer

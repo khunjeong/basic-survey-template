@@ -57,3 +57,9 @@ export interface IDefaultModeSurveyResult extends ISurveyMultiSelect {
   startDate: TDate;
   endDate: TDate;
 }
+
+export interface IUploadOptions {
+  baseUrl: string;
+  actionUrl: string;
+  authorization: string;
+}
