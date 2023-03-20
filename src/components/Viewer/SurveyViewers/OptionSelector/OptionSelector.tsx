@@ -45,6 +45,9 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
             onClick={() => onChange(question.id)}>
             <CheckIcon />
             <Text>{question.item}</Text>
+            {question.image && (
+              <img className='preview' src={question.image} alt='question_Image' />
+            )}
           </S.OptionSelectItem>
         );
       })}

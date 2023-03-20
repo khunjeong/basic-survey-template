@@ -1,6 +1,6 @@
 {
   "name": "@khunjeong/basic-survey-template",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "author": {
     "name": "khunjeong",
     "email": "woghdkgj4456@gmail.com"
@@ -81,6 +81,5 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.4"
-  },
-  "proxy": "http://ip-set-nlp-2cce1cff97b66aa1.elb.ap-northeast-2.amazonaws.com/"
+  }
 }

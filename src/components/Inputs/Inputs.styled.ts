@@ -29,6 +29,8 @@ export const UploadInputContainer = styled.div`
   
     button {
       position: absolute;
+      top: 4px;
+      right: 4px;
       overflow: hidden;
       background: none;
       border: none;
@@ -36,8 +38,6 @@ export const UploadInputContainer = styled.div`
       border-radius: 2px;
       width: 44px;
       height: 44px;
-      top: 4px;
-      right: 4px;
       img {
         object-fit: cover;
         width: 44px;
