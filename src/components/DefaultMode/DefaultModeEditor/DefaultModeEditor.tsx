@@ -45,7 +45,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
     <Article>
       <FlexDiv justifyContent='space-between'>
         <Description size={12}>※ 글 등록 이후에는 수정할 수 없습니다.</Description>
-        <CloseCircleOutlined style={{ cursor: 'pointer' }} onClick={onClose} />
+        {onClose && <CloseCircleOutlined style={{ cursor: 'pointer' }} onClick={onClose} />}
       </FlexDiv>
       <Section>
         <RangePicker

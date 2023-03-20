@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
 import { VoteIcon } from '../../Icons';
 import { OptionMultiSelector } from '../../../components/Viewer/SurveyViewers/OptionSelector';
@@ -10,11 +11,18 @@ const DefaultModeViewer = <T extends IDefaultModeViewerProps>({
   survey,
   onResult,
   onSubmit,
+  onRemove,
 }: T): ReactElement<T> => {
   const [resultSurvey, setResultSurvey] = useState<IDefaultModeSurveyResult>(survey);
 
   return (
     <S.Container>
+      {onRemove && (
+        <FlexDiv justifyContent='flex-end'>
+          <CloseCircleOutlined onClick={() => onRemove(survey.id)} style={{ cursor: 'pointer' }} />
+        </FlexDiv>
+      )}
+
       <Section>
         <FlexDiv justifyContent='space-between'>
           <FlexDiv justifyContent='flex-start' style={{ gap: 16 }}>
@@ -33,12 +41,6 @@ const DefaultModeViewer = <T extends IDefaultModeViewerProps>({
       </Section>
       <Section>
         <S.QuestionWrap>
-          {/* {resultSurvey.questions.map(question => (
-            <S.QuestionItemWrap key={question.id} onClick={}>
-              <CheckIcon />
-              <Text>{question.item}</Text>
-            </S.QuestionItemWrap>
-          ))} */}
           <OptionMultiSelector
             value={resultSurvey.answer}
             questions={resultSurvey.questions}

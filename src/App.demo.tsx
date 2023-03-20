@@ -59,6 +59,7 @@ const App: FC = () => {
             onSubmit={result => {
               console.log({ result });
             }}
+            onRemove={key => console.log({ key })}
           />
         )}
       </ConfigProvider>
