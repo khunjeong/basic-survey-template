@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
-import '@styles/global.css';
+import './styles/global.css';
 import {
   Article,
   DefaultModeEditor,

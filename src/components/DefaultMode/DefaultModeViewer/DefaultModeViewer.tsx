@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { VoteIcon } from '../../Icons';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
+import { VoteIcon } from '../../Icons';
 import { OptionMultiSelector } from '../../../components/Viewer/SurveyViewers/OptionSelector';
 import { IDefaultModeSurveyResult } from '../../../types';
 import { IDefaultModeViewerProps } from './DefaultModeViewer.type';

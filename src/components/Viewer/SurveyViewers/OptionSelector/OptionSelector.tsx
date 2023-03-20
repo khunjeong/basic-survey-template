@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import classnames from 'classnames';
-import { CheckIcon } from '../../../Icons';
+import { CheckIcon } from '../../../../components/Icons';
 import { Text } from '../../../../components';
 import * as S from './OptionSelector.styled';
 import { IOptionSelectorProps, IOptionMultiSelectorProps } from './OptionSelector.type';
