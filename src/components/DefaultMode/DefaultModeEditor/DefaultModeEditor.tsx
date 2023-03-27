@@ -117,17 +117,19 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
           </Section>
           {onSubmit && (
             <Section>
-              <Button
-                onClick={() =>
-                  onSubmit({
-                    ...surveyData,
-                    title,
-                    startDate,
-                    endDate,
-                  })
-                }>
-                {submitButtonText || '전송하기'}
-              </Button>
+              <FlexDiv style={{ gap: 16 }}>
+                <Button
+                  onClick={() =>
+                    onSubmit({
+                      ...surveyData,
+                      title,
+                      startDate,
+                      endDate,
+                    })
+                  }>
+                  {submitButtonText || '전송하기'}
+                </Button>
+              </FlexDiv>
             </Section>
           )}
         </>

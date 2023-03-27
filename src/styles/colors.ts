@@ -1,5 +1,5 @@
 export const colors = {
-  PRIMARY: '#45D6C8',
+  PRIMARY: '#000000',
   PRIMARY_BRIGHT: '#97EEE6',
   PRIMARY_LIGHT: '#EBFFFD', // Hovered
   PRIMARY_DARK: '#3AABA0', // Clicked

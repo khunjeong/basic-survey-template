@@ -14,7 +14,7 @@ export const OptionSelectItem = styled.div`
   margin: 8px 0px;
   padding: 6px 13px;
   gap: 8px;
-  border: 1px solid ${colors.GRAY_BRIGHT_1};
+  border: 1px solid ${colors.GRAY_BRIGHT_3};
   cursor: pointer;
   img {
     position: absolute;
@@ -23,6 +23,11 @@ export const OptionSelectItem = styled.div`
     object-fit: cover;
     width: 44px;
     height: 44px;
+  }
+  svg {
+    path {
+      fill: ${colors.GRAY_BRIGHT_3};
+    }
   }
   &:hover {
     background-color: ${colors.PRIMARY};
@@ -36,13 +41,14 @@ export const OptionSelectItem = styled.div`
     }
   }
   &.selected {
-    background-color: ${colors.GRAY_BRIGHT_1};
+    background-color: ${colors.GRAY_ORIGIN_2};
+    border: 1px solid ${colors.BLACK};
     p {
-      color: ${colors.WHITE};
+      color: ${colors.BLACK};
     }
     svg {
       path {
-        fill: ${colors.WHITE};
+        fill: ${colors.BLACK};
       }
     }
   }

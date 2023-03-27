@@ -55,7 +55,7 @@ const App: FC = () => {
         {defaultResult && (
           <DefaultModeViewer
             survey={defaultResult}
-            onResult={() => console.log('resultGO')}
+            // onResult={() => console.log('resultGO')}
             onSubmit={result => {
               console.log({ result });
             }}
