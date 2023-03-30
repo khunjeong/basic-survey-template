@@ -125,6 +125,8 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
                       title,
                       startDate,
                       endDate,
+                      count: 0,
+                      self: false,
                     })
                   }>
                   {submitButtonText || '전송하기'}

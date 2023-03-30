@@ -8,4 +8,6 @@ export const surveyList = Object.keys(ESurveyTypes).map((value, index) => ({
   label: getNameFromSurveyType(value.toLowerCase() as ESurveyTypes),
   item: value,
   image: '',
+  count: 0,
+  self: false,
 }));

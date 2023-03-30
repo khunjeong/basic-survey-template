@@ -1,10 +1,16 @@
 import * as SurveyType from './types/survey';
-
-import { Editor, Viewer, DefaultModeEditor, DefaultModeViewer } from './components';
+import { ESurveyTypes } from './types/survey';
+import {
+  Editor,
+  Viewer,
+  DefaultModeEditor,
+  DefaultModeResult,
+  DefaultModeViewer,
+} from './components';
 
 export type { SurveyType };
 
-export { Editor, Viewer, DefaultModeEditor, DefaultModeViewer };
+export { Editor, Viewer, DefaultModeEditor, DefaultModeResult, DefaultModeViewer, ESurveyTypes };
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
 // import App from './App.demo';

@@ -91,6 +91,8 @@ const OptionEditor = <T extends IOptionEditorProps>({
               item: '',
               index: items.length + 1,
               image: '',
+              count: 0,
+              self: false,
             },
           ])
         }>

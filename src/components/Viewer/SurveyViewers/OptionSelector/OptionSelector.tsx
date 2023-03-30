@@ -33,6 +33,8 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
   value,
   questions,
   onChange,
+  totalVoteCount,
+  top,
 }: T): ReactElement<T> => {
   return (
     <S.OptionSelectorContainer>
@@ -42,12 +44,26 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
             key={question.id}
             className={classnames({
               selected: value.includes(question.id),
+              top: question.count === top,
             })}
             onClick={() => onChange(question.id)}>
             <CheckIcon />
             <Text color={colors.GRAY_BRIGHT_3}>{question.item}</Text>
-            {question.image && (
-              <img className='preview' src={question.image} alt='question_Image' />
+            <div className='right-area'>
+              {totalVoteCount > 0 && (
+                <Text color={colors.GRAY_BRIGHT_3}>{`${Math.floor(
+                  (question.count / totalVoteCount) * 100,
+                )} %`}</Text>
+              )}
+              {question.image && (
+                <img className='preview' src={question.image} alt='question_Image' />
+              )}
+            </div>
+            {totalVoteCount > 0 && (
+              <S.OptionSelectItemBg
+                percent={Math.floor((question.count / totalVoteCount) * 100)}
+                top={question.count === top}
+              />
             )}
           </S.OptionSelectItem>
         );

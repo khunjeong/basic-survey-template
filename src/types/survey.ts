@@ -24,6 +24,8 @@ export interface IDropdownOption {
   item: string;
   index: number;
   image: string;
+  count: number;
+  self: boolean;
 }
 
 export type TypedSurvey<T extends ESurveyTypes> = Extract<TSurvey, { type: T }>;
@@ -56,6 +58,8 @@ export interface ISurveyResult {
 export interface IDefaultModeSurveyResult extends ISurveyMultiSelect {
   startDate: TDate;
   endDate: TDate;
+  count: number;
+  self: boolean;
 }
 
 export interface IUploadOptions {

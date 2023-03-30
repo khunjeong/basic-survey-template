@@ -6,6 +6,7 @@ import './styles/global.css';
 import {
   Article,
   DefaultModeEditor,
+  DefaultModeResult,
   DefaultModeViewer,
   Editor,
   FlexDiv,
@@ -17,6 +18,7 @@ import { Reset } from 'styled-reset';
 const App: FC = () => {
   const [result, setResult] = useState<ISurveyResult>();
   const [defaultResult, setDefaultResult] = useState<IDefaultModeSurveyResult>();
+  const [surveyResult, setSurveyResult] = useState<IDefaultModeSurveyResult>();
   useEffect(() => {
     console.log({ result });
   }, [result]);
@@ -57,10 +59,21 @@ const App: FC = () => {
             survey={defaultResult}
             // onResult={() => console.log('resultGO')}
             onSubmit={result => {
-              console.log({ result });
+              setSurveyResult(result);
             }}
             onRemove={key => console.log({ key })}
           />
+        )}
+        {surveyResult && (
+          <>
+            <h1>투표 결과 표시</h1>
+            <DefaultModeResult
+              survey={surveyResult}
+              onSubmit={result => {
+                console.log({ result });
+              }}
+            />
+          </>
         )}
       </ConfigProvider>
     </div>

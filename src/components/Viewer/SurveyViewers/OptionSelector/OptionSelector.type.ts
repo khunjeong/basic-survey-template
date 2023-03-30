@@ -10,6 +10,8 @@ export interface IOptionMultiSelectorProps {
   value: string[];
   questions: IDropdownOption[];
   onChange: (value: string) => void;
+  totalVoteCount?: number;
+  top?: number;
 }
 
 export interface IOptionSelectItem {
