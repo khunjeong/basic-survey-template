@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement } from 'react';
+import { ChangeEvent, ReactElement, KeyboardEvent } from 'react';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import { v4 as uuid } from 'uuid';
@@ -60,6 +60,22 @@ const OptionEditor = <T extends IOptionEditorProps>({
     }
   };
 
+  const handleOnKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onAddOption([
+        ...items,
+        {
+          id: uuid(),
+          item: '',
+          index: items.length + 1,
+          image: '',
+          count: 0,
+          self: false,
+        },
+      ]);
+    }
+  };
+
   return (
     <S.OptionEditorContainer>
       {items.map(item => (
@@ -77,6 +93,7 @@ const OptionEditor = <T extends IOptionEditorProps>({
             }
             previewFileSrc={item.image || null}
             handleUpdateImg={target => updateImg({ target, key: item.id })}
+            onKeyPress={handleOnKeyPress}
           />
         </FlexDiv>
       ))}
