@@ -11,3 +11,9 @@ export const getDateDiff = (startDate: TDate, endDate: TDate) => {
     return `${end.format('YYYY.MM.DD')} 까지 투표 가능`;
   }
 };
+
+export const getDateBetween = (startDate: TDate, endDate: TDate) => {
+  const start = dayjs(startDate);
+  const end = dayjs(endDate);
+  return `${start.format('YYYY.MM.DD')} ~ ${end.format('YYYY.MM.DD')}`;
+};

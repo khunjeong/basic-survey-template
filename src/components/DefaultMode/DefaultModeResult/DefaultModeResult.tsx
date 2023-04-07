@@ -2,7 +2,7 @@ import { ReactElement, useState, useMemo } from 'react';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
 import { VoteIcon } from '../../Icons';
 import { OptionMultiSelector } from '../../../components/Viewer/SurveyViewers/OptionSelector';
-import { getDateDiff } from '../../../utils/dateFormat';
+import { getDateBetween } from '../../../utils/dateFormat';
 import { IDefaultModeSurveyResult } from '../../../types';
 import { IDefaultModeResultProps } from './DefaultModeResult.type';
 import * as S from './DefaultModeResult.styled';
@@ -45,7 +45,7 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
             </Description>
           </FlexDiv>
           <Description size={16} weight={400}>
-            {getDateDiff(resultSurvey.startDate, resultSurvey.endDate)}
+            {getDateBetween(resultSurvey.startDate, resultSurvey.endDate)}
           </Description>
         </FlexDiv>
       </Section>
