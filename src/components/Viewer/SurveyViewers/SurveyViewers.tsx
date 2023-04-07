@@ -30,6 +30,7 @@ const SurveyViewers = <T extends ISurveyViewersProps>({
             <OptionMultiSelector
               value={survey.answer}
               questions={survey.questions}
+              maxChoice={survey.maxChoice}
               onChange={value =>
                 onUpdateSurvey({
                   ...survey,

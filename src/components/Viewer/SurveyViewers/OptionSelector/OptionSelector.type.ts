@@ -9,6 +9,7 @@ export interface IOptionSelectorProps {
 export interface IOptionMultiSelectorProps {
   value: string[];
   questions: IDropdownOption[];
+  maxChoice: number;
   onChange: (value: string) => void;
   totalVoteCount?: number;
   top?: number;

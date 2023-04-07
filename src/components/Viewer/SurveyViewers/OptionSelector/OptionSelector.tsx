@@ -32,6 +32,7 @@ export const OptionSelector = <T extends IOptionSelectorProps>({
 export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
   value,
   questions,
+  maxChoice,
   onChange,
   totalVoteCount,
   top,
@@ -46,7 +47,13 @@ export const OptionMultiSelector = <T extends IOptionMultiSelectorProps>({
               selected: value.includes(question.id),
               top: question.count === top,
             })}
-            onClick={() => onChange(question.id)}>
+            onClick={() => {
+              if (value.length < maxChoice) {
+                return onChange(question.id);
+              } else if (value.length === maxChoice && value.includes(question.id)) {
+                return onChange(question.id);
+              }
+            }}>
             <CheckIcon />
             <Text color={colors.GRAY_BRIGHT_3}>{question.item}</Text>
             <div className='right-area'>

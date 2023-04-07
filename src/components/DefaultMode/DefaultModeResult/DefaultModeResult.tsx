@@ -57,6 +57,7 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
           <OptionMultiSelector
             value={resultSurvey.answer}
             questions={resultSurvey.questions}
+            maxChoice={resultSurvey.maxChoice}
             onChange={value => {
               setResultSurvey({
                 ...resultSurvey,
