@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { DatePicker } from 'antd';
 import {
   CloseCircleOutlined,
@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
 import { Article, Button, Section, Inputs, FlexDiv, Description, Text } from '../../../components';
+import { ClockIcon } from '../../../components/Icons';
 import OptionEditor from '../../../components/Editor/Surveys/OptionEditor/OptionEditor';
 
 import { colors } from '../../../styles/colors';
@@ -17,8 +18,6 @@ import * as S from './DefaultModeEditor.styled';
 
 import { ESurveyTypes, TDate, TSurvey } from '../../../types';
 import { IDefaultModeEditorProps } from './DefaultModeEditor.type';
-
-const { RangePicker } = DatePicker;
 
 const dateFormat = 'YYYY-MM-DD';
 const nowDate = dayjs();
@@ -31,7 +30,7 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
 }: T): ReactElement<T> => {
   const [title, setTitle] = useState<string>('');
   const [startDate, setStartDate] = useState<TDate>(nowDate.format(dateFormat));
-  const [endDate, setEndDate] = useState<TDate>(nowDate.add(1, 'd').format(dateFormat));
+  const [endDate, setEndDate] = useState<TDate>(nowDate.add(7, 'd').format(dateFormat));
   const [surveyData, setSurveyData] = useState<TSurvey>({
     id: uuid(),
     type: ESurveyTypes.MULTI_SELECT,
@@ -41,24 +40,13 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
     maxChoice: 1,
   });
 
+  useEffect(() => {}, [endDate]);
   return (
     <Article>
       <FlexDiv justifyContent='space-between'>
         <Description size={12}>※ 글 등록 이후에는 수정할 수 없습니다.</Description>
         {onClose && <CloseCircleOutlined style={{ cursor: 'pointer' }} onClick={onClose} />}
       </FlexDiv>
-      <Section>
-        <RangePicker
-          defaultValue={[dayjs(startDate, dateFormat), dayjs(endDate, dateFormat)]}
-          format={dateFormat}
-          onChange={rangeValue => {
-            if (rangeValue) {
-              setStartDate(dayjs(rangeValue?.[0]).format(dateFormat));
-              setEndDate(dayjs(rangeValue?.[1]).format(dateFormat));
-            }
-          }}
-        />
-      </Section>
       <Section>
         <Inputs
           placeholder='투표 제목을 입력하세요'
@@ -83,6 +71,31 @@ const DefaultModeEditor = <T extends IDefaultModeEditorProps>({
             />
           </Section>
 
+          <Section>
+            <FlexDiv justifyContent='space-between'>
+              <div style={{ width: 16 }}>
+                <ClockIcon />
+              </div>
+              <DatePicker
+                bordered={false}
+                size='large'
+                defaultValue={dayjs(startDate, dateFormat)}
+                format={dateFormat}
+                onChange={dateValue => setStartDate(dayjs(dateValue).format(dateFormat))}
+                disabledDate={current => current && current < nowDate.add(-1, 'd').endOf('day')}
+              />
+            </FlexDiv>
+            <FlexDiv justifyContent='flex-end'>
+              <DatePicker
+                bordered={false}
+                size='large'
+                defaultValue={dayjs(endDate, dateFormat)}
+                format={dateFormat}
+                onChange={dateValue => setEndDate(dayjs(dateValue).format(dateFormat))}
+                disabledDate={current => current && current < dayjs(startDate).endOf('day')}
+              />
+            </FlexDiv>
+          </Section>
           <Section style={{ margin: '16px 0' }}>
             <FlexDiv justifyContent='space-between' style={{ gap: 16 }}>
               <FlexDiv style={{ gap: 16 }}>
