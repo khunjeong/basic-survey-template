@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import dayjs from 'dayjs';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
 import { VoteIcon } from '../../Icons';
@@ -7,6 +8,8 @@ import { getDateDiff } from '../../../utils/dateFormat';
 import { IDefaultModeSurveyResult } from '../../../types';
 import { IDefaultModeViewerProps } from './DefaultModeViewer.type';
 import * as S from './DefaultModeViewer.styled';
+
+const nowDate = dayjs();
 
 const DefaultModeViewer = <T extends IDefaultModeViewerProps>({
   survey,
@@ -29,7 +32,7 @@ const DefaultModeViewer = <T extends IDefaultModeViewerProps>({
           <FlexDiv justifyContent='flex-start' style={{ gap: 16 }}>
             <VoteIcon />
             <Description size={16} weight={400}>
-              투표 | N 명 참여중
+              {`투표 | ${resultSurvey.count} 명 참여중`}
             </Description>
           </FlexDiv>
           <Description size={16} weight={400}>
@@ -64,12 +67,22 @@ const DefaultModeViewer = <T extends IDefaultModeViewerProps>({
             : '중복 투표 불가능'}
         </Description>
       </Section>
-      <Section>
-        <FlexDiv flexDirection='column'>
-          <Button onClick={() => onSubmit(resultSurvey)}>투표하기</Button>
-          {/* <Button onClick={onResult}>결과보기</Button> */}
-        </FlexDiv>
-      </Section>
+      {!(nowDate > dayjs(resultSurvey.endDate).endOf('day')) ? (
+        <Section>
+          <FlexDiv flexDirection='column'>
+            <Button
+              disabled={resultSurvey.answer.length === 0}
+              onClick={() => onSubmit(resultSurvey)}>
+              투표하기
+            </Button>
+            {/* <Button onClick={onResult}>결과보기</Button> */}
+          </FlexDiv>
+        </Section>
+      ) : (
+        <Section>
+          <Description>{`투표 종료 | ${resultSurvey.count} 명 참여`}</Description>
+        </Section>
+      )}
     </S.Container>
   );
 };

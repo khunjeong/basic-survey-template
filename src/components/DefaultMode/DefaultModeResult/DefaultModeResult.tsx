@@ -1,10 +1,10 @@
-import { ReactElement, useState, useMemo } from 'react';
+import { ReactElement, useEffect, useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
 import { VoteIcon } from '../../Icons';
 import { OptionMultiSelector } from '../../../components/Viewer/SurveyViewers/OptionSelector';
 import { getDateBetween } from '../../../utils/dateFormat';
-import { IDefaultModeSurveyResult } from '../../../types';
+import { IDefaultModeSurveyResult, ESurveyTypes } from '../../../types';
 import { IDefaultModeResultProps } from './DefaultModeResult.type';
 import * as S from './DefaultModeResult.styled';
 
@@ -15,10 +15,18 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
   onSubmit,
 }: T): ReactElement<T> => {
   const [resultSurvey, setResultSurvey] = useState<IDefaultModeSurveyResult>({
-    ...survey,
-    answer: survey.questions
-      .filter(question => question.self)
-      .map(question => question.id.toString()),
+    id: '',
+    type: ESurveyTypes.MULTI_SELECT,
+    title: '',
+    description: '',
+    required: false,
+    questions: [],
+    answer: [],
+    maxChoice: 1,
+    startDate: '',
+    endDate: '',
+    count: 0,
+    self: false,
   });
 
   const totalVoteCount = useMemo(
@@ -36,6 +44,15 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
       }, 0),
     [survey],
   );
+
+  useEffect(() => {
+    setResultSurvey({
+      ...survey,
+      answer: survey.questions
+        .filter(question => question.self)
+        .map(question => question.id.toString()),
+    });
+  }, [survey]);
 
   return (
     <S.Container>
@@ -81,17 +98,22 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
             : '중복 투표 불가능'}
         </Description>
       </Section>
-      <Section>
-        <FlexDiv flexDirection='column'>
-          <Button
-            disabled={
-              nowDate > dayjs(resultSurvey.endDate).endOf('day') || resultSurvey.answer.length === 0
-            }
-            onClick={() => onSubmit(resultSurvey)}>
-            투표하기
-          </Button>
-        </FlexDiv>
-      </Section>
+      {!(nowDate > dayjs(resultSurvey.endDate).endOf('day')) ? (
+        <Section>
+          <FlexDiv flexDirection='column'>
+            <Button
+              disabled={resultSurvey.answer.length === 0}
+              onClick={() => onSubmit(resultSurvey)}>
+              투표하기
+            </Button>
+            {/* <Button onClick={onResult}>결과보기</Button> */}
+          </FlexDiv>
+        </Section>
+      ) : (
+        <Section>
+          <Description>{`투표 종료 | ${resultSurvey.count} 명 참여`}</Description>
+        </Section>
+      )}
     </S.Container>
   );
 };
