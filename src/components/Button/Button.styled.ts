@@ -13,11 +13,18 @@ export const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    color: #fff;
+    color: ${colors.WHITE};
     background-color: ${colors.PRIMARY};
   }
   &.active {
-    color: #fff;
+    color: ${colors.WHITE};
     background-color: ${colors.PRIMARY};
   }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${colors.GRAY_LIGHT_5}; 
+    &:hover {
+      background-color: ${colors.GRAY_LIGHT_5};
+      color: ${colors.BLACK};
+    }
 `;

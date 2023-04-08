@@ -1,4 +1,5 @@
 import { ReactElement, useState, useMemo } from 'react';
+import dayjs from 'dayjs';
 import { FlexDiv, Title, Description, Section, Button } from '../../../components';
 import { VoteIcon } from '../../Icons';
 import { OptionMultiSelector } from '../../../components/Viewer/SurveyViewers/OptionSelector';
@@ -6,6 +7,8 @@ import { getDateBetween } from '../../../utils/dateFormat';
 import { IDefaultModeSurveyResult } from '../../../types';
 import { IDefaultModeResultProps } from './DefaultModeResult.type';
 import * as S from './DefaultModeResult.styled';
+
+const nowDate = dayjs();
 
 const DefaultModeResult = <T extends IDefaultModeResultProps>({
   survey,
@@ -80,7 +83,13 @@ const DefaultModeResult = <T extends IDefaultModeResultProps>({
       </Section>
       <Section>
         <FlexDiv flexDirection='column'>
-          <Button onClick={() => onSubmit(resultSurvey)}>투표하기</Button>
+          <Button
+            disabled={
+              nowDate > dayjs(resultSurvey.endDate).endOf('day') || resultSurvey.answer.length === 0
+            }
+            onClick={() => onSubmit(resultSurvey)}>
+            투표하기
+          </Button>
         </FlexDiv>
       </Section>
     </S.Container>
