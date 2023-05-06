@@ -38,7 +38,7 @@ export const OptionSelectItem = styled.div`
     }
   }
   &:hover {
-    background-color: ${colors.PRIMARY};
+    background-color: ${colors.GRAY_DARK};
     p {
       color: ${colors.WHITE};
     }
@@ -59,7 +59,8 @@ export const OptionSelectItem = styled.div`
       }
     }
     &:hover {
-      background-color: ${colors.PRIMARY};
+      background-color: ${colors.GRAY_DARK};
+      border: 3px solid ${colors.PRIMARY};
       p {
         color: ${colors.WHITE};
       }
@@ -72,7 +73,8 @@ export const OptionSelectItem = styled.div`
   }
   &.top {
     &:hover {
-      background-color: ${colors.PRIMARY};
+      background-color: ${colors.GRAY_DARK};
+      border: 3px solid ${colors.PRIMARY};
       p {
         color: ${colors.WHITE};
       }
