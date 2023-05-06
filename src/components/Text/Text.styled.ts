@@ -19,6 +19,7 @@ export const Description = styled.p<ITextProps>`
   font-size: ${props => `${props.size}px` || '1em'};
   font-weight: ${props => props.weight || 700};
   color: ${props => props.color || colors.GRAY_ORIGIN_1};
+  white-space: nowrap;
   ${props =>
     props.isEllipsis &&
     `
