@@ -1,10 +1,16 @@
 {
   "name": "@khunjeong/basic-survey-template",
-  "version": "0.0.53",
+  "version": "0.0.55",
   "author": {
     "name": "khunjeong",
     "email": "woghdkgj4456@gmail.com"
   },
+  "description": "React Survey components",
+  "keywords": [
+    "react",
+    "component",
+    "survey"
+  ],
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,18 +23,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.14",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
     "antd": "^5.2.3",
     "axios": "^1.3.4",
     "dayjs": "^1.11.7",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
     "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.8",
@@ -77,9 +75,15 @@
     "@babel/preset-react": "^7.18.6",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.14",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "craco-alias": "^3.0.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.4"
   }
 }
